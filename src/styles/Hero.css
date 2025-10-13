@@ -1,22 +1,40 @@
+/* src/styles/Hero.css */
+
+/* La sección .hero ahora solo se preocupa de la altura y el fondo */
 .hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4rem 8%;
   background: radial-gradient(circle at top left, #1e1e1e, #0a0a0a);
   color: #fff;
+  min-height: 80vh; /* Ajusta la altura a tu gusto */
+  
+  /* Usamos flexbox para centrar verticalmente el contenido dentro de la sección */
+  display: flex;
+  align-items: center;
+  padding-top: 120px; /* Mantenemos un padding superior para no ser tapado por el navbar */
+  padding-bottom: 60px;
+  box-sizing: border-box;
 }
 
-.hero-content {
-  max-width: 600px;
+/* El contenido en sí. Flexbox para alinear texto e imagen */
+.hero-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Mantiene el espacio entre texto e imagen */
+  gap: 2rem; /* Espacio entre ellos */
 }
 
-.hero-content h1 {
+.hero-text h1 {
   font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.hero-content span {
+.hero-text span {
   color: #00ffaa;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 500px; /* Limita el ancho del párrafo para que no sea muy largo */
 }
 
 .hero-image {
@@ -24,7 +42,67 @@
   animation: float 4s ease-in-out infinite;
 }
 
+/* Estilos para el contenedor de acciones (botón y redes) */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Espacio entre el botón y los enlaces de redes sociales */
+  margin-top: 2.5rem; /* Espacio superior para separarlo del párrafo */
+}
+
+/* Estilo general para botones (lo usaremos para el de Descargar CV) */
+.btn {
+  display: inline-flex; /* Para alinear el icono y el texto */
+  align-items: center;
+  gap: 0.75rem; /* Espacio entre icono y texto */
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px; /* Bordes redondeados para la forma de píldora */
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap; /* Evita que el texto del botón se rompa en varias líneas */
+}
+
+/* Estilo específico para el botón de "Descargar CV" (con contorno) */
+.primary-btn {
+  background-color: transparent; /* Fondo transparente */
+  color: #00ffaa; /* Color del texto/icono */
+  border: 2px solid #00ffaa; /* Contorno de color verde */
+}
+
+.primary-btn:hover {
+  background-color: #00ffaa; /* Fondo verde al pasar el cursor */
+  color: #1e1e1e; /* Texto oscuro al pasar el cursor */
+}
+
+/* Estilos para los enlaces de redes sociales */
+.social-links {
+  display: flex;
+  gap: 1.5rem; /* Espacio entre cada icono de red social */
+}
+
+.social-links a {
+  font-size: 1.8rem; /* Tamaño de los iconos */
+  color: #e0e0e0; /* Color gris claro, heredado del body pero podemos especificarlo */
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #00ffaa; /* Color verde al pasar el cursor */
+}
+
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+/* Media Query para apilar en móvil */
+@media (max-width: 768px) {
+  .hero-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
 }
