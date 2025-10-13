@@ -100,7 +100,7 @@
 }
 
 /* Media Query para apilar en móvil */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .hero-content-wrapper {
     flex-direction: column;
     text-align: center;
