@@ -1,29 +1,80 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 3rem;
-  background-color: #0d0d0d;
-  color: #fff;
+/* Contenedor principal de la barra de navegación */
+.navbar-container {
+  position: fixed;
+  top: 2rem; /* <-- ¡Cambiado de 'bottom' a 'top'! */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* El resto de tus estilos (background, backdrop-filter, etc.) no cambian */
+  background-color: rgba(15, 18, 41, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 0.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  z-index: 1000;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
+/* La lista que contiene todos los enlaces */
 .nav-links {
-  display: flex;
   list-style: none;
-  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Pone los elementos en fila */
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre cada botón */
 }
 
-.nav-links a {
-  color: #fff;
+/* Estilo para cada enlace individual (y el botón de tema) */
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Espacio entre el icono y el texto */
+  
+  color: #c7c7c7; /* Color de texto gris claro */
   text-decoration: none;
-  transition: color 0.3s;
+  font-size: 0.9rem;
+  font-weight: 500;
+  
+  padding: 0.75rem 1.25rem; /* Espaciado interno para hacerlo más grande */
+  border-radius: 50px; /* Bordes redondeados para cada botón */
+  
+  transition: all 0.3s ease; /* Transición suave para hover */
 }
 
-.nav-links a:hover {
-  color: #00ffaa;
+/* Estilo para el botón de cambio de tema */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem; /* Un poco menos de padding horizontal ya que no tiene texto */
+}
+
+/* Efecto al pasar el cursor sobre un enlace que NO está activo */
+.nav-link:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Estilo específico para el enlace ACTIVO (el que está seleccionado) */
+.nav-link.active {
+  background-color: #2e2e5c; /* Fondo de color azul/morado oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Ajusta el tamaño de los iconos de react-icons */
+.nav-link svg {
+  font-size: 1.2rem;
+}
+
+/* Oculta el texto en pantallas pequeñas para que solo se vean los iconos (Opcional) */
+@media (max-width: 768px) {
+  .nav-link span {
+    display: none;
+  }
+  .nav-link {
+    padding: 0.75rem;
+  }
 }
