@@ -18,12 +18,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Un 'reset' más completo para evitar estilos por defecto de los navegadores 
+/* Un 'reset' más completo para evitar estilos por defecto de los navegadores */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}*/
+}
 
 /* CONTENEDOR GLOBAL
   Esta es la clase más importante para mantener tu diseño centrado y consistente.
