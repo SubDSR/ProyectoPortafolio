@@ -144,6 +144,21 @@
 /* --- Responsive --- */
 @media (max-width: 900px) {
   .projects-grid {
+    /* Mantenemos una sola columna en móvil */
     grid-template-columns: 1fr;
   }
+
+  /* --- INICIO DE LA NUEVA LÓGICA --- */
+
+  /* Por defecto, oculta todas las tarjetas de proyecto EXCEPTO la primera */
+  .projects-grid .project-card:not(:first-child) {
+    display: none;
+  }
+
+  /* Cuando el contenedor .projects-grid tiene la clase "show-all"... */
+  .projects-grid.show-all .project-card {
+    /* ...vuelve a mostrar TODAS las tarjetas */
+    display: flex; /* Usamos flex para que coincida con el display por defecto de la tarjeta */
+  }
+  /* --- FIN DE LA NUEVA LÓGICA --- */
 }
