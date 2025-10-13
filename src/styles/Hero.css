@@ -99,10 +99,36 @@
   50% { transform: translateY(-10px); }
 }
 
-/* Media Query para apilar en móvil */
+
 @media (max-width: 900px) {
   .hero-content-wrapper {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column; 
+    text-align: center;    
+    gap: 1.5rem;           
+  }
+
+  .hero-text h1 {
+    font-size: 2rem; 
+  }
+
+  .hero-text h2 {
+    font-size: 1.1rem; 
+  }
+
+  .hero-text p {
+    font-size: 1rem; 
+  }
+
+  .hero-actions .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;     
+  }
+
+  .social-links a {
+    font-size: 1.5rem; 
+  }
+
+  .hero-image {
+    width: 200px; 
   }
 }
