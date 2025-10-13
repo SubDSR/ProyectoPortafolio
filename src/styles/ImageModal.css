@@ -1,0 +1,63 @@
+/* El fondo oscuro que cubre toda la pantalla */
+.modal-backdrop {
+  position: fixed; /* Se posiciona relativo a la ventana */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Fondo negro con 85% de opacidad */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Asegura que esté por encima de todo lo demás */
+  cursor: pointer;
+  animation: fadeIn 0.3s ease; /* Animación suave al aparecer */
+}
+
+/* Contenedor del contenido del modal (la imagen y el botón de cerrar) */
+.modal-content {
+  position: relative;
+  cursor: default; /* El cursor vuelve a la normalidad sobre la imagen */
+}
+
+/* La imagen ampliada */
+.modal-image {
+  max-width: 90vw; /* Ocupa máximo el 90% del ancho de la ventana */
+  max-height: 90vh; /* Ocupa máximo el 90% de la altura de la ventana */
+  object-fit: contain; /* Asegura que se vea la imagen completa sin distorsión */
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* El botón para cerrar (la 'X') */
+.close-button {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
