@@ -1,0 +1,12 @@
+/* index.css - estilos globales */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
