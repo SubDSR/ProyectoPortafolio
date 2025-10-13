@@ -1,55 +1,138 @@
 import React, { useState } from "react";
 import "../styles/Projects.css";
-import bienesRaices from "../assets/1759034658267.jpeg";
-import webtech from "../assets/1759034658505.jpeg";
+
+// Importa el nuevo componente de modal
+import ImageModal from "./ImageModal"; // <-- ¡NUEVA IMPORTACIÓN!
+
+// Importa las imágenes de tus proyectos
+import bienesRaicesImg from "../assets/1759034658267.jpeg";
+import webtechImg from "../assets/1759034658505.jpeg";
+import portfolioImg from "../assets/portafolio-personal.png";
+
+// ... (importaciones de iconos) ...
+// La forma correcta (una sola línea para 'react-icons/fa')
+import { FaReact, FaGithub, FaCss3Alt } from 'react-icons/fa';
+import { SiVite, SiNextdotjs, SiTailwindcss } from 'react-icons/si';
+import { IoMdGlobe } from 'react-icons/io';
 
 function Projects() {
   const [showAll, setShowAll] = useState(false);
+  
+  // --- ¡NUEVO ESTADO PARA EL MODAL! ---
+  // Guardará la URL de la imagen a mostrar. Si es `null`, el modal está cerrado.
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const toggleProjects = () => {
     setShowAll(!showAll);
   };
+  
+  // --- NUEVAS FUNCIONES PARA ABRIR/CERRAR ---
+  const openModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+  
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
 
   return (
-    <section id="projects" className="projects-section">
-      <h2 className="projects-title">Proyectos</h2>
-      <div className={`projects-grid ${showAll ? "show-all" : ""}`}>
-        <div className="project-card">
-          <img src={bienesRaices} alt="Proyecto Bienes Raíces" />
-          <h3>Bienes Raíces</h3>
-          <p>Sitio web de venta y alquiler de propiedades con funcionalidades en React.</p>
-          <div className="buttons">
-            <a href="#" className="btn-primary">Sitio Web</a>
-            <a href="#" className="btn-secondary">GitHub</a>
-          </div>
-        </div>
+    <> {/* Usamos un Fragment (<>) para poder tener la sección y el modal al mismo nivel */}
+      <section id="projects" className="projects-section">
+        <div className="container">
+          <h2 className="projects-title">Proyectos</h2>
+          <div className={`projects-grid ${showAll ? "show-all" : ""}`}>
+            
+            {/* --- Tarjeta del Portafolio Personal --- */}
+            <div className="project-card">
+                {/* Usamos la nueva imagen importada */}
+                <img 
+                    src={portfolioImg} 
+                    alt="Proyecto de Portafolio Personal" 
+                    onClick={() => openModal(portfolioImg)}
+                    style={{ cursor: 'pointer' }} 
+                />
 
-        <div className="project-card">
-          <img src={webtech} alt="Proyecto Webtech" />
-          <h3>Landing Page Webtech</h3>
-          <p>Sitio web de soluciones digitales impactantes creado con Vite + React.</p>
-          <div className="buttons">
-            <a href="#" className="btn-primary">Sitio Web</a>
-            <a href="#" className="btn-secondary">GitHub</a>
-          </div>
-        </div>
+                <h3>Portafolio Personal</h3>
+                
+                {/* Tecnologías actualizadas para este proyecto */}
+                <div className="project-tech">
+                    <span className="tech-pill"><FaReact /> React</span>
+                    <span className="tech-pill"><SiVite /> Vite</span>
+                    <span className="tech-pill"><FaCss3Alt /> CSS</span>
+                </div>
 
-        {/* Ejemplo de proyecto adicional */}
-        <div className="project-card">
-          <img src={bienesRaices} alt="Proyecto 3" />
-          <h3>Dashboard Admin</h3>
-          <p>Panel administrativo con gráficas dinámicas y autenticación.</p>
-          <div className="buttons">
-            <a href="#" className="btn-primary">Sitio Web</a>
-            <a href="#" className="btn-secondary">GitHub</a>
-          </div>
-        </div>
-      </div>
+                {/* Nueva descripción del proyecto */}
+                <p>Mi portafolio personal, diseñado y desarrollado para mostrar mis habilidades y proyectos. Creado desde cero con un enfoque en un diseño limpio, moderno e interactivo.</p>
+                
+                <div className="buttons">
+                    <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
+                    <a 
+                        href="https://github.com/SubDSR/ProyectoPortafolio.git" // <-- REEMPLAZA ESTO
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="btn-secondary"
+                    >
+                        <FaGithub /> GitHub
+                    </a>
+                </div>
+            </div>
 
-      <button className="view-more-btn" onClick={toggleProjects}>
-        {showAll ? "Ver menos ↑" : "Ver más proyectos ↓"}
-      </button>
-    </section>
+            <div className="project-card">
+              {/* ↓↓ AÑADIMOS onClick a la imagen ↓↓ */}
+              <img 
+                src={webtechImg} 
+                alt="Proyecto Webtech" 
+                onClick={() => openModal(webtechImg)}
+                style={{ cursor: 'pointer' }}
+              />
+              <h3>Landing Page Webtech</h3>
+              {/* ... resto del contenido de la tarjeta ... */}
+              <div className="project-tech">
+                <span className="tech-pill"><SiTailwindcss /> TailwindCSS</span>
+                <span className="tech-pill"><SiVite /> Vite</span>
+                <span className="tech-pill"><FaReact /> React</span>
+              </div>
+              <p>Sitio web de soluciones digitales en creaciones webs impactantes y efectivas, creado con Vite + React.</p>
+              <div className="buttons">
+                <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
+                <a href="#" className="btn-secondary"><FaGithub /> GitHub</a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              {/* ↓↓ AÑADIMOS onClick a la imagen ↓↓ */}
+              <img 
+                src={bienesRaicesImg} 
+                alt="Proyecto Bienes Raíces" 
+                onClick={() => openModal(bienesRaicesImg)}
+                style={{ cursor: 'pointer' }} /* Cambia el cursor para indicar que es clickeable */
+              />
+              <h3>Bienes Raíces</h3>
+              {/* ... resto del contenido de la tarjeta ... */}
+              <div className="project-tech">
+                <span className="tech-pill"><SiTailwindcss /> TailwindCSS</span>
+                <span className="tech-pill"><SiNextdotjs /> Next.js</span>
+                <span className="tech-pill"><FaReact /> React</span>
+              </div>
+              <p>Sitio web de venta y alquiler de propiedades con diversas funcionalidades del Framework NextJs.</p>
+              <div className="buttons">
+                <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
+                <a href="#" className="btn-secondary"><FaGithub /> GitHub</a>
+              </div>
+            </div>
+
+          </div>
+
+          <button className="view-more-btn" onClick={toggleProjects}>
+            {showAll ? "Ver menos" : "Ver más"}
+          </button>
+        </div>
+      </section>
+
+      {/* --- RENDERIZADO CONDICIONAL DEL MODAL --- */}
+      {/* El modal solo se mostrará en el DOM si `selectedImage` no es `null` */}
+      <ImageModal imageUrl={selectedImage} onClose={closeModal} />
+    </>
   );
 }
 

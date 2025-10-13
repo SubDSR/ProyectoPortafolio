@@ -1,57 +1,105 @@
 .projects-section {
-  background: #0a0a0a;
-  color: #fff;
-  padding: 5rem 8%;
+  padding: 5rem 0; /* Quitamos padding lateral, lo maneja el .container */
   text-align: center;
 }
 
 .projects-title {
   font-size: 2rem;
   margin-bottom: 3rem;
+  font-weight: 600;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
-  transition: all 0.4s ease;
 }
 
 .project-card {
   background: #141414;
-  padding: 2rem;
+  border: 1px solid #222;
+  padding: 1.5rem;
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(0,255,170,0.4);
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
 }
 
 .project-card img {
   width: 100%;
+  aspect-ratio: 16 / 9; /* <-- CAMBIO CLAVE */
+  object-fit: cover;    /* <-- CAMBIO CLAVE */
   border-radius: 10px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #333;
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* --- ESTILOS PARA LAS PÍLDORAS DE TECNOLOGÍA --- */
+.project-tech {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; 
+  gap: 0.75rem;
   margin-bottom: 1rem;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #444;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: #ccc;
+  background-color: #1f1f1f;
 }
 
+.project-card p {
+  color: #aaa;
+  line-height: 1.6;
+  /* Ya no tiene 'flex-grow: 1' */
+}
+
+/* --- ESTILOS PARA LOS BOTONES DE ANCHO COMPLETO --- */
+.buttons {
+  display: flex; /* Cambiado a flex para un mejor control */
+  margin-top: 1.5rem;
+  border-radius: 50px; /* La curvatura exterior */
+  border: 2px solid #555; /* El borde exterior del grupo */
+  overflow: hidden; /* Muy importante para que los botones internos no se salgan */
+}
+
+/* Estilo común para ambos botones */
 .btn-primary,
 .btn-secondary {
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
+  flex: 1; /* Cada botón ocupa el 50% del espacio disponible */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
   text-decoration: none;
   transition: all 0.3s;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
+  
+  /* Quitamos el borde y el radio individual, ya que el padre lo controla */
+  border: none;
+  border-radius: 0;
 }
 
+/* Estilo del botón primario (Sitio Web) */
 .btn-primary {
   background: #00ffaa;
   color: #0a0a0a;
@@ -61,19 +109,23 @@
   background: #00cc88;
 }
 
+/* Estilo del botón secundario (GitHub) */
 .btn-secondary {
-  border: 1px solid #00ffaa;
-  color: #00ffaa;
+  background: transparent;
+  color: #ccc;
+  /* La línea divisora es un borde izquierdo en este botón */
+  border-left: 2px solid #555;
 }
 
 .btn-secondary:hover {
-  background: #00ffaa;
-  color: #0a0a0a;
+  background: rgba(0, 255, 170, 0.1); /* Un sutil fondo verde al pasar el cursor */
+  color: #00ffaa;
+  border-left-color: #00ffaa; /* El divisor también cambia de color */
 }
 
 /* --- Botón Ver Más --- */
 .view-more-btn {
-  margin-top: 2rem;
+  margin-top: 3rem;
   background: none;
   border: 1px solid #00ffaa;
   color: #00ffaa;
@@ -90,18 +142,8 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .projects-grid {
     grid-template-columns: 1fr;
-  }
-
-  /* Ocultar los proyectos adicionales por defecto */
-  .projects-grid .project-card:nth-child(n+2) {
-    display: none;
-  }
-
-  /* Cuando se activa "show-all", mostrar todos */
-  .projects-grid.show-all .project-card {
-    display: block;
   }
 }
