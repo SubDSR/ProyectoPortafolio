@@ -1,0 +1,161 @@
+/* --- SECCIÓN DE CERTIFICADOS --- */
+.certificates-section {
+  padding: 5rem 0;
+  background-color: #0a0a0a;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.swiper_container {
+  padding: 2rem 0;
+  position: relative;
+}
+
+.swiper-slide {
+  width: 600px;
+  height: 425px;
+}
+
+/* --- TARJETAS DE CERTIFICADOS --- */
+.certificate-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.certificate-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.certificate-card:hover img {
+  transform: scale(1.1);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.certificate-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-overlay h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-overlay p {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+.overlay-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #00ffaa;
+  color: #0a0a0a;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.overlay-button:hover {
+  transform: scale(1.05);
+}
+
+/* --- FLECHAS DE NAVEGACIÓN PERSONALIZADAS --- */
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(31, 31, 31, 0.85);
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #1f1f1f;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.swiper-button-prev {
+  left: 1rem;
+}
+
+.swiper-button-next {
+  right: 1rem;
+}
+
+/* Eliminamos el SVG azul de Swiper */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* --- PAGINACIÓN --- */
+.slider-controler {
+  position: relative;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: #00ffaa;
+}
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+  .swiper-slide {
+    width: 250px;
+    height: 180px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
