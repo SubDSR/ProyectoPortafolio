@@ -100,14 +100,18 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  
+  /* Centra el icono de react-icons dentro del círculo */
   display: flex;
   justify-content: center;
   align-items: center;
+  
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
   background-color: rgba(31, 31, 31, 0.85);
-  z-index: 10;
+  
+  z-index: 10; /* Asegura que las flechas estén por encima de las diapositivas */
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -118,6 +122,7 @@
   transform: translateY(-50%) scale(1.1);
 }
 
+/* Posiciona las flechas a los lados */
 .swiper-button-prev {
   left: 1rem;
 }
@@ -126,11 +131,10 @@
   right: 1rem;
 }
 
-/* Eliminamos el SVG azul de Swiper */
+/* Oculta la flecha azul por defecto de Swiper */
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  display: none !important;
-  content: none !important;
+  display: none;
 }
 
 /* --- PAGINACIÓN --- */
@@ -155,7 +159,7 @@
 
   .swiper-button-next,
   .swiper-button-prev {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
