@@ -14,7 +14,7 @@ import 'swiper/css/navigation';
 import '../styles/Certificates.css';
 import { FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-// 4. Importa tus imágenes
+// 4. Importa tus imágenes de vista previa
 import certDiseGra from '../assets/Certificado_DiseñoGrafico.jpg';
 import certCienDat from '../assets/Certificado_CienciaDeDatos.jpg';
 import certCloudCompt from '../assets/Certificado_CloudComputing.jpg';
@@ -52,9 +52,10 @@ function Certificates() {
             <div className="certificate-card">
               <img src={certDiseGra} alt="Certificado de Diseño Gráfico" />
               <div className="card-overlay">
-                <h3>Diseño de Experiencia de Usuario (UX)</h3>
-                <p>Certificado profesional de Google que cubre todo el proceso de diseño UX.</p>
-                <a href="#" className="overlay-button"><FaEye /> Ver Certificado</a>
+                <h3>Diseño Gráfico con IA</h3>
+                <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
+                {/* 👇 ENLACE CORREGIDO 👇 */}
+                <a href="/certificates/Certificado_DiseñoGrafico.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
           </SwiperSlide>
@@ -65,8 +66,9 @@ function Certificates() {
               <img src={certCienDat} alt="Certificado de Ciencia de Datos" />
               <div className="card-overlay">
                 <h3>Ciencia de Datos</h3>
-                <p>Certificado profesional que abarca los fundamentos de la ciencia de datos.</p>
-                <a href="#" className="overlay-button"><FaEye /> Ver Certificado</a>
+                <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
+                {/* 👇 ENLACE CORREGIDO 👇 */}
+                <a href="/certificates/Certificado_CienciaDeDatos.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
           </SwiperSlide>
@@ -77,8 +79,9 @@ function Certificates() {
               <img src={certCloudCompt} alt="Certificado de Cloud Computing" />
               <div className="card-overlay">
                 <h3>Cloud Computing</h3>
-                <p>Certificado profesional que cubre los fundamentos de la computación en la nube.</p>
-                <a href="#" className="overlay-button"><FaEye /> Ver Certificado</a>
+                <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
+                {/* 👇 ENLACE CORREGIDO 👇 */}
+                <a href="/certificates/Certificado_CloudComputing.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
           </SwiperSlide>
@@ -88,9 +91,10 @@ function Certificates() {
             <div className="certificate-card">
               <img src={certSQlBD} alt="Certificado de SQL Base de Datos" />
               <div className="card-overlay">
-                <h3>SQL Base de Datos</h3>
-                <p>Certificado profesional que cubre los fundamentos de SQL y bases de datos.</p>
-                <a href="#" className="overlay-button"><FaEye /> Ver Certificado</a>
+                <h3>SQL - Base de Datos 1</h3>
+                <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
+                {/* 👇 ENLACE CORREGIDO 👇 */}
+                <a href="/certificates/Certificado_SQLBaseDeDatos.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
           </SwiperSlide>
