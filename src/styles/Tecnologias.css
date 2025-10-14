@@ -1,0 +1,88 @@
+.technologies-section {
+  padding: 5rem 0;
+  background-color: #0a0a0a;
+}
+
+/* Reutilizamos el estilo de título que ya tienes */
+.technologies-section .section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.tech-cards-container {
+  display: grid;
+  /* Crea 3 columnas en escritorio, 2 en tablet y 1 en móvil */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.tech-card {
+  background-color: #141414;
+  border: 1px solid #222;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+}
+
+.tech-card h3 {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ccc;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.tech-list {
+  display: grid;
+  /* Dos columnas de tecnologías dentro de cada tarjeta */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.tech-icon {
+  font-size: 2.2rem;
+}
+
+/* --- Colores de los Iconos --- */
+.tech-icon.html { color: #E34F26; }
+.tech-icon.css { color: #1572B6; }
+.tech-icon.js { color: #F7DF1E; }
+.tech-icon.react { color: #61DAFB; }
+.tech-icon.python { color: #F7DF1E; } /* Color para Python */
+.tech-icon.fastapi { color: #009688; } /* Color para FastAPI */
+.tech-icon.mysql { color: #4479A1; }
+.tech-icon.sqlserver { color: #CC2927; }
+
+/* ... (el resto de tus estilos para .tech-card, .tech-list, etc.) ... */
+/* --- Ajuste del icono SQL Server (imagen JPG) --- */
+.tech-icon.sqlserver-img {
+  width: 2.2rem;       /* Igual que los otros iconos */
+  height: 2.2rem;
+  object-fit: contain; /* Mantiene proporciones sin deformar */
+  border-radius: 6px;  /* Opcional: suaviza esquinas */
+}
+
+.tech-icon.python-img {
+  width: 2.2rem;
+  height: 2.2rem;
+  object-fit: contain;
+  border-radius: 6px; /* suaviza bordes */
+}
+
+/* --- Responsividad para tablets y móviles --- */
+@media (max-width: 768px) {
+  .tech-list {
+    /* Mantenemos dos columnas, pero podríamos cambiar a una si es necesario */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
