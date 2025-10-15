@@ -7,6 +7,7 @@ import ImageModal from "./ImageModal"; // <-- ¡NUEVA IMPORTACIÓN!
 // Importa las imágenes de tus proyectos
 import bienesRaicesImg from "../assets/1759034658267.jpeg";
 import webtechImg from "../assets/1759034658505.jpeg";
+import systemvetImg from "../assets/sistema_veterinario.png";
 import portfolioImg from "../assets/portafolio-personal.png";
 
 // ... (importaciones de iconos) ...
@@ -79,25 +80,42 @@ function Projects() {
 
             <div className="project-card">
               {/* ↓↓ AÑADIMOS onClick a la imagen ↓↓ */}
-              <img 
-                src={webtechImg} 
-                alt="Proyecto Webtech" 
-                onClick={() => openModal(webtechImg)}
+              <img
+                src={systemvetImg}
+                alt="Proyecto Sistema Veterinario"
+                onClick={() => openModal(systemvetImg)}
                 style={{ cursor: 'pointer' }}
               />
-              <h3>Landing Page Webtech</h3>
-              {/* ... resto del contenido de la tarjeta ... */}
+
+              <h3>Sistema de Gestión Clínica Veterinaria</h3>
+
+              {/* Tecnologías principales */}
               <div className="project-tech">
-                <span className="tech-pill"><SiTailwindcss /> TailwindCSS</span>
-                <span className="tech-pill"><SiVite /> Vite</span>
-                <span className="tech-pill"><FaReact /> React</span>
+                <span className="tech-pill"><FaGithub /> Python</span>
+                <span className="tech-pill"><SiTailwindcss /> FastAPI</span>
+                <span className="tech-pill"><FaCss3Alt /> MySQL</span>
               </div>
-              <p>Sitio web de soluciones digitales en creaciones webs impactantes y efectivas, creado con Vite + React.</p>
+
+              {/* Descripción */}
+              <p>
+                Proyecto enfocado en la gestión integral de una clínica veterinaria. 
+                Me concentré principalmente en el desarrollo del backend con Python y FastAPI, 
+                además del diseño y administración de la base de datos en MySQL.
+              </p>
+
               <div className="buttons">
                 <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
-                <a href="#" className="btn-secondary"><FaGithub /> GitHub</a>
+                <a 
+                  href="https://github.com/KevinBohorquez/VeterinariaClinica_Backend" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-secondary"
+                >
+                  <FaGithub /> GitHub
+                </a>
               </div>
             </div>
+
 
             <div className="project-card">
               {/* ↓↓ AÑADIMOS onClick a la imagen ↓↓ */}

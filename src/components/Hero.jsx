@@ -1,5 +1,5 @@
 import React from "react";
-import { FaDownload, FaLinkedinIn, FaInstagram, FaGithub } from 'react-icons/fa'; 
+import { FaDownload, FaLinkedinIn, FaInstagram, FaGithub } from 'react-icons/fa';
 import "../styles/Hero.css";
 import robot from "../assets/robot_meme.png";
 
@@ -11,7 +11,7 @@ function Hero() {
           <div className="hero-text">
             <h1>Hola, soy <span>David Sevan</span></h1>
             <h2>Desarrollador Fullstack</h2>
-            <p>Apasionado por crear interfaces modernas y funcionales.</p>
+            <p> Estudiante de Ingeniería de Software. Apasionado por el desarrollo de software de extremo a extremo, cuidando tanto el diseño de la interfaz como la lógica del servidor.</p>
             
             <div className="hero-actions">
               <a href="/tu_cv.pdf" download className="btn primary-btn">
@@ -31,7 +31,10 @@ function Hero() {
             </div>
 
           </div>
-          <img src={robot} alt="Robot animado" className="hero-image" />
+          {/* Contenedor para el fondo circular */}
+          <div className="hero-image-container">
+            <img src={robot} alt="Robot animado" className="hero-image" />
+          </div>
         </div>
       </div>
     </section>

@@ -4,12 +4,10 @@
 .hero {
   background: radial-gradient(circle at top left, #1e1e1e, #0a0a0a);
   color: #fff;
-  min-height: 80vh; /* Ajusta la altura a tu gusto */
-  
-  /* Usamos flexbox para centrar verticalmente el contenido dentro de la sección */
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  padding-top: 120px; /* Mantenemos un padding superior para no ser tapado por el navbar */
+  padding-top: 120px;
   padding-bottom: 60px;
   box-sizing: border-box;
 }
@@ -18,8 +16,8 @@
 .hero-content-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Mantiene el espacio entre texto e imagen */
-  gap: 2rem; /* Espacio entre ellos */
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .hero-text h1 {
@@ -34,69 +32,111 @@
 .hero-text p {
   font-size: 1.1rem;
   line-height: 1.5;
-  max-width: 500px; /* Limita el ancho del párrafo para que no sea muy largo */
+  max-width: 500px;
+}
+
+/* --- ESTILO ACTUALIZADO PARA SEPARAR FONDOS --- */
+.hero-image-container {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* Posicionamiento relativo para el pseudo-elemento */
+  position: relative;
+  /* Evita que el fondo se salga del círculo */
+  overflow: hidden;
+}
+
+/* Creamos un pseudo-elemento ::before para manejar el fondo */
+.hero-image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/Fondo-Pared.jpg');
+  background-size: cover;
+  background-position: center;
+  /* Transición suave para el brillo */
+  transition: filter 0.3s ease;
+  /* Asegura que esté detrás de la imagen del robot */
+  z-index: 1;
 }
 
 .hero-image {
-  width: 280px;
-  animation: float 4s ease-in-out infinite;
+  width: 250px;
+  /* Transición suave para el tamaño */
+  transition: transform 0.3s ease;
+  /* Ponemos la imagen del robot por encima del fondo */
+  position: relative;
+  z-index: 2;
+}
+
+/* --- EFECTOS AL PASAR EL CURSOR --- */
+
+/* 1. Oscurece SOLO el fondo (el pseudo-elemento) */
+.hero-image-container:hover::before {
+  filter: brightness(0.7);
+}
+
+/* 2. Agranda la imagen del robot */
+.hero-image-container:hover .hero-image {
+  transform: scale(1.1);
 }
 
 /* Estilos para el contenedor de acciones (botón y redes) */
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Espacio entre el botón y los enlaces de redes sociales */
-  margin-top: 2.5rem; /* Espacio superior para separarlo del párrafo */
+  gap: 1.5rem;
+  margin-top: 2.5rem;
 }
 
-/* Estilo general para botones (lo usaremos para el de Descargar CV) */
+/* Estilo general para botones */
 .btn {
-  display: inline-flex; /* Para alinear el icono y el texto */
+  display: inline-flex;
   align-items: center;
-  gap: 0.75rem; /* Espacio entre icono y texto */
+  gap: 0.75rem;
   padding: 0.8rem 1.5rem;
-  border-radius: 50px; /* Bordes redondeados para la forma de píldora */
+  border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  white-space: nowrap; /* Evita que el texto del botón se rompa en varias líneas */
+  white-space: nowrap;
 }
 
-/* Estilo específico para el botón de "Descargar CV" (con contorno) */
+/* Estilo específico para el botón de "Descargar CV" */
 .primary-btn {
-  background-color: transparent; /* Fondo transparente */
-  color: #00ffaa; /* Color del texto/icono */
-  border: 2px solid #00ffaa; /* Contorno de color verde */
+  background-color: transparent;
+  color: #00ffaa;
+  border: 2px solid #00ffaa;
 }
 
 .primary-btn:hover {
-  background-color: #00ffaa; /* Fondo verde al pasar el cursor */
-  color: #1e1e1e; /* Texto oscuro al pasar el cursor */
+  background-color: #00ffaa;
+  color: #1e1e1e;
 }
 
 /* Estilos para los enlaces de redes sociales */
 .social-links {
   display: flex;
-  gap: 1.5rem; /* Espacio entre cada icono de red social */
+  gap: 1.5rem;
 }
 
 .social-links a {
-  font-size: 1.8rem; /* Tamaño de los iconos */
-  color: #e0e0e0; /* Color gris claro, heredado del body pero podemos especificarlo */
+  font-size: 1.8rem;
+  color: #e0e0e0;
   transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #00ffaa; /* Color verde al pasar el cursor */
-}
-
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  color: #00ffaa;
 }
 
 
@@ -107,28 +147,23 @@
     gap: 1.5rem;           
   }
 
-  .hero-text h1 {
-    font-size: 2rem; 
-  }
-
-  .hero-text h2 {
-    font-size: 1.1rem; 
-  }
-
-  .hero-text p {
-    font-size: 1rem; 
-  }
+  .hero-text h1 { font-size: 2rem; }
+  .hero-text h2 { font-size: 1.1rem; }
+  .hero-text p { font-size: 1rem; }
 
   .hero-actions .btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;     
   }
 
-  .social-links a {
-    font-size: 1.5rem; 
+  .social-links a { font-size: 1.5rem; }
+  
+  .hero-image-container {
+    width: 220px;
+    height: 220px;
   }
 
   .hero-image {
-    width: 200px; 
+    width: 190px; 
   }
 }
