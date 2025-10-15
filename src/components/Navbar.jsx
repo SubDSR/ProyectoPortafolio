@@ -1,32 +1,48 @@
 import React from 'react';
-// Importa los iconos que necesitas de la librería
-import { FaHome, FaUser, FaCube, FaFileAlt, FaFlask, FaImage, FaMoon } from 'react-icons/fa';
+// Se ha cambiado FaMicrochip por FaCode
+import { FaHome, FaUser, FaCube, FaGraduationCap, FaCode, FaMoon } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 function Navbar() {
   return (
     <nav className="navbar-container">
       <ul className="nav-links">
+        {/* 1. Inicio */}
         <li>
-          {/* Añadimos la clase 'active' para el estilo del botón seleccionado */}
-          <a href="#home" className="nav-link active">
+          <a href="#hero" className="nav-link active">
             <FaHome />
           </a>
         </li>
-        <li>
-          <a href="#about" className="nav-link">
-            <FaUser />
-            <span>About</span>
-          </a>
-        </li>
+        {/* 2. Proyectos */}
         <li>
           <a href="#projects" className="nav-link">
             <FaCube />
-            <span>Projects</span>
+            <span>Proyectos</span>
           </a>
         </li>
+        {/* 3. Sobre Mí */}
         <li>
-          {/* Este puede ser un botón para cambiar el tema */}
+          <a href="#about" className="nav-link">
+            <FaUser />
+            <span>Sobre Mí</span>
+          </a>
+        </li>
+        {/* 4. Certificados */}
+        <li>
+          <a href="#certificates" className="nav-link">
+            <FaGraduationCap />
+            <span>Certificados</span>
+          </a>
+        </li>
+        {/* 5. Tecnologías */}
+        <li>
+          <a href="#technologies" className="nav-link">
+            <FaCode /> {/* <-- ICONO ACTUALIZADO */}
+            <span>Tecnologías</span>
+          </a>
+        </li>
+        {/* Botón de Tema (Opcional) */}
+        <li>
           <button className="nav-link theme-toggle">
             <FaMoon />
           </button>
