@@ -1,12 +1,14 @@
 /* Contenedor principal de la barra de navegación */
 .navbar-container {
   position: fixed;
-  top: 2rem; /* <-- ¡Cambiado de 'bottom' a 'top'! */
+  top: 2rem;
   left: 50%;
   transform: translateX(-50%);
   
-  /* El resto de tus estilos (background, backdrop-filter, etc.) no cambian */
-  background-color: rgba(15, 18, 41, 0.75);
+  /* --- COLOR ACTUALIZADO --- */
+  /* Un gris oscuro semitransparente, más acorde con el fondo general */
+  background-color: rgba(16, 16, 16, 0.7); /* <-- CAMBIO CLAVE */
+  
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -21,9 +23,9 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Pone los elementos en fila */
+  display: flex;
   align-items: center;
-  gap: 0.5rem; /* Espacio entre cada botón */
+  gap: 0.5rem;
 }
 
 /* Estilo para cada enlace individual (y el botón de tema) */
@@ -31,17 +33,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem; /* Espacio entre el icono y el texto */
+  gap: 0.5rem;
   
-  color: #c7c7c7; /* Color de texto gris claro */
+  color: #c7c7c7;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
   
-  padding: 0.75rem 1.25rem; /* Espaciado interno para hacerlo más grande */
-  border-radius: 50px; /* Bordes redondeados para cada botón */
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
   
-  transition: all 0.3s ease; /* Transición suave para hover */
+  transition: all 0.3s ease;
 }
 
 /* Estilo para el botón de cambio de tema */
@@ -49,7 +51,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.75rem; /* Un poco menos de padding horizontal ya que no tiene texto */
+  padding: 0.75rem;
 }
 
 /* Efecto al pasar el cursor sobre un enlace que NO está activo */
@@ -60,8 +62,9 @@
 
 /* Estilo específico para el enlace ACTIVO (el que está seleccionado) */
 .nav-link.active {
-  background-color: #2e2e5c; /* Fondo de color azul/morado oscuro */
-  color: #ffffff; /* Texto blanco */
+  /* Un color verde azulado que contrasta bien con el nuevo fondo */
+  background-color: #004d40; /* <-- CAMBIO CLAVE */
+  color: #ffffff;
 }
 
 /* Ajusta el tamaño de los iconos de react-icons */
@@ -69,7 +72,7 @@
   font-size: 1.2rem;
 }
 
-/* Oculta el texto en pantallas pequeñas para que solo se vean los iconos (Opcional) */
+/* Oculta el texto en pantallas pequeñas */
 @media (max-width: 768px) {
   .nav-link span {
     display: none;
