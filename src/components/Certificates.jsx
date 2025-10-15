@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // <-- 1. Importa useState y useEffect
 
-// 1. Importa los componentes de Swiper y los módulos necesarios
+// Importa los componentes de Swiper y los módulos necesarios
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
-// 2. Importa los estilos de Swiper
+// Importa los estilos de Swiper
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// 3. Importa tus estilos y los íconos/imágenes
+// Importa tus estilos y los íconos/imágenes
 import '../styles/Certificates.css';
 import { FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-// 4. Importa tus imágenes de vista previa
+// Importa tus imágenes de vista previa
 import certDiseGra from '../assets/Certificado_DiseñoGrafico.jpg';
 import certCienDat from '../assets/Certificado_CienciaDeDatos.jpg';
 import certCloudCompt from '../assets/Certificado_CloudComputing.jpg';
 import certSQlBD from '../assets/Certificado_SQLBaseDeDatos.jpg';
 
 function Certificates() {
+  // --- 2. Lógica para deshabilitar el loop en móvil ---
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Limpia el event listener cuando el componente se desmonte
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  // ---------------------------------------------------
+
   return (
     <section id="certificates" className="certificates-section">
       <div className="container">
@@ -30,7 +47,7 @@ function Certificates() {
           effect={'coverflow'}
           grabCursor={true}
           centeredSlides={true}
-          loop={true}
+          loop={!isMobile} // <-- 3. El loop se deshabilita si isMobile es true
           slidesPerView={'auto'}
           coverflowEffect={{
             rotate: 0,
@@ -54,7 +71,6 @@ function Certificates() {
               <div className="card-overlay">
                 <h3>Diseño Gráfico con IA</h3>
                 <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
-                {/* 👇 ENLACE CORREGIDO 👇 */}
                 <a href="/certificates/Certificado_DiseñoGrafico.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
@@ -67,7 +83,6 @@ function Certificates() {
               <div className="card-overlay">
                 <h3>Ciencia de Datos</h3>
                 <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
-                {/* 👇 ENLACE CORREGIDO 👇 */}
                 <a href="/certificates/Certificado_CienciaDeDatos.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
@@ -80,7 +95,6 @@ function Certificates() {
               <div className="card-overlay">
                 <h3>Cloud Computing</h3>
                 <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
-                {/* 👇 ENLACE CORREGIDO 👇 */}
                 <a href="/certificates/Certificado_CloudComputing.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
@@ -93,13 +107,11 @@ function Certificates() {
               <div className="card-overlay">
                 <h3>SQL - Base de Datos 1</h3>
                 <p>Certificado del Programa de Iniciación Tecnológica de la CTIC-UNI.</p>
-                {/* 👇 ENLACE CORREGIDO 👇 */}
                 <a href="/certificates/Certificado_SQLBaseDeDatos.pdf" target="_blank" rel="noopener noreferrer" className="overlay-button"><FaEye /> Ver Certificado</a>
               </div>
             </div>
           </SwiperSlide>
 
-          {/* --- CONTROLES PERSONALIZADOS --- */}
           <div className="swiper-button-prev slider-arrow">
             <FaChevronLeft color="#00ffaa" size={20} />
           </div>
@@ -107,7 +119,6 @@ function Certificates() {
             <FaChevronRight color="#00ffaa" size={20} />
           </div>
 
-          {/* --- PAGINACIÓN --- */}
           <div className="slider-controler">
             <div className="swiper-pagination"></div>
           </div>

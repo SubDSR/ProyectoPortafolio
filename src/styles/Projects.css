@@ -160,5 +160,10 @@
 @media (max-width: 900px) {
   .secondary-projects {
     grid-template-columns: 1fr;
+    display: none;
+  }
+
+  .projects-grid.show-all .secondary-projects {
+    display: grid;
   }
 }
