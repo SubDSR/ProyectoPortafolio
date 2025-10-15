@@ -1,0 +1,153 @@
+.about-section {
+  padding: 5rem 0;
+  background-color: #0f0f0f;
+}
+
+.about-section .section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 4rem; /* Espacio extra añadido */
+  color: #fff;
+}
+
+.about-content {
+  display: flex;
+  align-items: center; /* Asegura que los ítems estén centrados verticalmente */
+  justify-content: center; /* Asegura que si hay espacio, el contenido se centre */
+  gap: 3rem;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  max-width: 1200px; /* Limita el ancho total del contenido de About */
+  margin: 0 auto; /* Centra el about-content dentro del container */
+}
+
+
+.about-image-container {
+  flex: 1; /* No crecerá ni se encogerá */
+  max-width: 350px;
+  background: radial-gradient(circle at center, #2e2e5c, transparent 70%);
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex; /* Añadimos flex para centrar la imagen internamente si fuera más pequeña */
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 600px; /* Puedes ajustar este valor si la imagen es muy grande */
+  height: auto;
+  border-radius: 20px;
+}
+
+.about-text-container {
+  flex: 1; /* Permite que el texto ocupe el espacio restante */
+  max-width: 600px; /* Limita el ancho del texto para que no empuje tanto la imagen */
+  text-align: left; /* Asegura que el texto siga alineado a la izquierda */
+}
+
+.about-text-container p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.about-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.about-stats {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+}
+
+.stat-item {
+  text-align: center;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #282828;
+  flex: 1;
+}
+
+.stat-item h4 {
+  font-size: 2rem;
+  color: #00ffaa;
+  margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.availability-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 255, 170, 0.08);
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: #c7c7c7;
+}
+
+.availability-indicator::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #00ffaa;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 170, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 255, 170, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 170, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .about-image-container {
+    max-width: 250px; /* Ajuste para móviles */
+    padding: 0.5rem;
+  }
+  
+  .about-text-container {
+    max-width: 100%; /* En móviles, el texto puede ocupar todo el ancho */
+    text-align: center;
+  }
+
+  .about-stats {
+    gap: 1rem;
+  }
+
+  .stat-item h4 {
+    font-size: 1.5rem;
+  }
+
+  .stat-item p {
+    font-size: 0.8rem;
+  }
+}
