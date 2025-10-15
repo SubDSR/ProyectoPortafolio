@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Hero from "./components/hero";
+import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import About from "./components/About"; // <-- 1. Importa el nuevo componente
 import Certificates from "./components/Certificates";
