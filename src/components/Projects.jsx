@@ -18,7 +18,17 @@ function Projects() {
   const [showAll, setShowAll] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // --- FUNCIÓN ACTUALIZADA CON CONDICIONAL PARA MÓVIL ---
   const toggleProjects = () => {
+    // Comprueba si se va a ocultar y si la pantalla es de móvil (menor a 900px)
+    if (showAll && window.innerWidth < 900) {
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) {
+        // Realiza el scroll solo si se cumplen las condiciones
+        projectsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // El estado siempre se actualiza, independientemente del scroll
     setShowAll(!showAll);
   };
   
@@ -39,7 +49,7 @@ function Projects() {
             
             {/* --- PROYECTO 1: SISTEMA VETERINARIO --- */}
             <div className="project-card">
-              <div className="project-category">Backend</div> {/* ETIQUETA AÑADIDA */}
+              <div className="project-category">Backend</div>
               <img
                 src={systemvetImg}
                 alt="Proyecto Sistema Veterinario"
@@ -75,7 +85,7 @@ function Projects() {
 
               {/* --- PROYECTO 2: PORTAFOLIO PERSONAL --- */}
               <div className="project-card">
-                <div className="project-category">Frontend</div> {/* ETIQUETA AÑADIDA */}
+                <div className="project-category">Frontend</div>
                 <img 
                     src={portfolioImg} 
                     alt="Proyecto de Portafolio Personal" 
@@ -104,20 +114,20 @@ function Projects() {
 
               {/* --- PROYECTO 3: BIENES RAÍCES --- */}
               <div className="project-card">
-                <div className="project-category">Prueba</div> {/* ETIQUETA AÑADIDA */}
+                <div className="project-category">Fullstack</div>
                 <img 
                   src={bienesRaicesImg} 
-                  alt="Prueba" 
+                  alt="Proyecto Bienes Raíces" 
                   onClick={() => openModal(bienesRaicesImg)}
                   style={{ cursor: 'pointer' }}
                 />
-                <h3>EasterEgg</h3>
+                <h3>Bienes Raíces</h3>
                 <div className="project-tech">
                   <span className="tech-pill"><SiTailwindcss /> TailwindCSS</span>
                   <span className="tech-pill"><SiNextdotjs /> Next.js</span>
                   <span className="tech-pill"><FaReact /> React</span>
                 </div>
-                <p>Equide</p>
+                <p>Sitio web de venta y alquiler de propiedades con diversas funcionalidades del Framework NextJs.</p>
                 <div className="buttons">
                   <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
                   <a href="#" className="btn-secondary"><FaGithub /> GitHub</a>
