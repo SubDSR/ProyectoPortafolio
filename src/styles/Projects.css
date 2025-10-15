@@ -1,5 +1,5 @@
 .projects-section {
-  padding: 5rem 0; /* Quitamos padding lateral, lo maneja el .container */
+  padding: 5rem 0;
   text-align: center;
 }
 
@@ -11,19 +11,40 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2.5rem;
 }
 
 .project-card {
   background: #141414;
   border: 1px solid #222;
-  padding: 1.5rem;
+  padding: 1.5rem; /* <-- La clave para la alineación */
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
 }
+
+/* --- NUEVOS ESTILOS PARA LA ETIQUETA DE CATEGORÍA --- */
+.project-category {
+  position: absolute;
+  top: 2rem;  /* Alineado verticalmente con el padding del card */
+  left: 2rem; /* Alineado horizontalmente con el padding del card */
+  background: rgba(66, 62, 122, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #e0e0e0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 10;
+  /* Borde más oscuro y sutil para que combine mejor */
+  border: 1px solid rgba(0, 0, 0, 0.2); 
+}
+/* -------------------------------------------------------- */
 
 .project-card:hover {
   transform: translateY(-8px);
@@ -32,8 +53,8 @@
 
 .project-card img {
   width: 100%;
-  aspect-ratio: 16 / 9; /* <-- CAMBIO CLAVE */
-  object-fit: cover;    /* <-- CAMBIO CLAVE */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1.5rem;
   border: 1px solid #333;
@@ -44,7 +65,6 @@
   margin-bottom: 0.75rem;
 }
 
-/* --- ESTILOS PARA LAS PÍLDORAS DE TECNOLOGÍA --- */
 .project-tech {
   display: flex;
   justify-content: center;
@@ -68,22 +88,19 @@
 .project-card p {
   color: #aaa;
   line-height: 1.6;
-  /* Ya no tiene 'flex-grow: 1' */
 }
 
-/* --- ESTILOS PARA LOS BOTONES DE ANCHO COMPLETO --- */
 .buttons {
-  display: flex; /* Cambiado a flex para un mejor control */
+  display: flex;
   margin-top: 1.5rem;
-  border-radius: 50px; /* La curvatura exterior */
-  border: 2px solid #555; /* El borde exterior del grupo */
-  overflow: hidden; /* Muy importante para que los botones internos no se salgan */
+  border-radius: 50px;
+  border: 2px solid #555;
+  overflow: hidden;
 }
 
-/* Estilo común para ambos botones */
 .btn-primary,
 .btn-secondary {
-  flex: 1; /* Cada botón ocupa el 50% del espacio disponible */
+  flex: 1;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -93,13 +110,10 @@
   transition: all 0.3s;
   font-weight: 600;
   font-size: 0.9rem;
-  
-  /* Quitamos el borde y el radio individual, ya que el padre lo controla */
   border: none;
   border-radius: 0;
 }
 
-/* Estilo del botón primario (Sitio Web) */
 .btn-primary {
   background: #00ffaa;
   color: #0a0a0a;
@@ -109,21 +123,18 @@
   background: #00cc88;
 }
 
-/* Estilo del botón secundario (GitHub) */
 .btn-secondary {
   background: transparent;
   color: #ccc;
-  /* La línea divisora es un borde izquierdo en este botón */
   border-left: 2px solid #555;
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 255, 170, 0.1); /* Un sutil fondo verde al pasar el cursor */
+  background: rgba(0, 255, 170, 0.1);
   color: #00ffaa;
-  border-left-color: #00ffaa; /* El divisor también cambia de color */
+  border-left-color: #00ffaa;
 }
 
-/* --- Botón Ver Más --- */
 .view-more-btn {
   margin-top: 3rem;
   background: none;
@@ -140,25 +151,14 @@
   background: #00ffaa;
   color: #0a0a0a;
 }
+.secondary-projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
 
-/* --- Responsive --- */
 @media (max-width: 900px) {
-  .projects-grid {
-    /* Mantenemos una sola columna en móvil */
+  .secondary-projects {
     grid-template-columns: 1fr;
   }
-
-  /* --- INICIO DE LA NUEVA LÓGICA --- */
-
-  /* Por defecto, oculta todas las tarjetas de proyecto EXCEPTO la primera */
-  .projects-grid .project-card:not(:first-child) {
-    display: none;
-  }
-
-  /* Cuando el contenedor .projects-grid tiene la clase "show-all"... */
-  .projects-grid.show-all .project-card {
-    /* ...vuelve a mostrar TODAS las tarjetas */
-    display: flex; /* Usamos flex para que coincida con el display por defecto de la tarjeta */
-  }
-  /* --- FIN DE LA NUEVA LÓGICA --- */
 }

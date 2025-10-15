@@ -1,9 +1,10 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import Hero from "./components/hero";
 import Projects from "./components/Projects";
+import About from "./components/About"; // <-- 1. Importa el nuevo componente
 import Certificates from "./components/Certificates";
-import Tecnologias from "./components/Tecnologias"; // <-- 1. Importa el nuevo componente
+import Tecnologias from "./components/Tecnologias";
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <Navbar />
       <Hero />
       <Projects />
+      <About /> {/* <-- 2. Añade el componente aquí */}
       <Certificates />
-      <Tecnologias /> {/* <-- 2. Añade el componente al final */}
+      <Tecnologias />
     </>
   );
 }
