@@ -1,15 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaHome, FaUser, FaCube, FaGraduationCap, FaCode, FaMoon } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 function Navbar() {
-  // Estado para rastrear qué sección es la activa. Por defecto 'hero'.
   const [activeNav, setActiveNav] = useState('#hero');
+
+  useEffect(() => {
+    // Definimos las secciones que queremos observar
+    const sections = ['#hero', '#projects', '#about', '#certificates', '#technologies'];
+    
+    const observerOptions = {
+      root: null,
+      // Se activa cuando la sección ocupa el 60% de la pantalla
+      rootMargin: '-40% 0px -40% 0px', 
+      threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveNav(`#${entry.target.id}`);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observar cada sección que tenga un ID correspondiente
+    sections.forEach((selector) => {
+      const element = document.querySelector(selector);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav className="navbar-container">
       <ul className="nav-links">
-        {/* 1. Inicio */}
         <li>
           <a 
             href="#hero" 
@@ -19,7 +47,6 @@ function Navbar() {
             <FaHome />
           </a>
         </li>
-        {/* 2. Proyectos */}
         <li>
           <a 
             href="#projects" 
@@ -30,7 +57,6 @@ function Navbar() {
             <span>Proyectos</span>
           </a>
         </li>
-        {/* 3. Sobre Mí */}
         <li>
           <a 
             href="#about" 
@@ -41,7 +67,6 @@ function Navbar() {
             <span>Sobre Mí</span>
           </a>
         </li>
-        {/* 4. Certificados */}
         <li>
           <a 
             href="#certificates" 
@@ -52,7 +77,6 @@ function Navbar() {
             <span>Certificados</span>
           </a>
         </li>
-        {/* 5. Tecnologías */}
         <li>
           <a 
             href="#technologies" 
@@ -63,14 +87,11 @@ function Navbar() {
             <span>Tecnologías</span>
           </a>
         </li>
-        {/* Botón de Tema */}
-        {/*
-        <li>
+        {/*<li>
           <button className="nav-link theme-toggle">
             <FaMoon />
-          </button>
-        </li>
-          */}
+            </button>
+          </li>*/}
       </ul>
     </nav>
   );

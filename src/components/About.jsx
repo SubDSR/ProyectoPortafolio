@@ -22,7 +22,7 @@ function About() {
             <div className="about-footer">
               <div className="about-stats">
                 <div className="stat-item">
-                  <h4>+2</h4>
+                  <h4>+4</h4>
                   <p>Proyectos Completados</p>
                 </div>
                 <div className="stat-item">

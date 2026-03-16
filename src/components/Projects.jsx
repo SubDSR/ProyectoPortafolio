@@ -23,11 +23,11 @@ function Projects() {
 
   // Estados para EducaMovil
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const videoUrlEducaMovil = "/videos/demo_educamovil.mp4"; 
+  const videoUrlEducaMovil = "https://drive.google.com/file/d/1mNoM-mDNSaqoxgwZHod_F0MmrttUZspz/view?usp=sharing"; 
 
   // NUEVO: Estados para La Puntita
   const [isLaPuntitaVideoOpen, setIsLaPuntitaVideoOpen] = useState(false);
-  const videoUrlLaPuntita = "/videos/demo_lapuntita.mp4"; // Asegúrate de tenerlo en public/videos/
+  const videoUrlLaPuntita = "https://drive.google.com/file/d/1kiKX-rTdQ6A9EWuQ5JFfWFJB5x2u1_8p/view?usp=sharing"; 
 
   // --- FUNCIÓN ACTUALIZADA CON CONDICIONAL PARA MÓVIL ---
   const toggleProjects = () => {
@@ -223,12 +223,12 @@ function Projects() {
 
       <VideoModal 
         isOpen={isVideoOpen} 
-        videoUrl="/videos/demo_educamovil.mp4" 
+        videoUrl="https://drive.google.com/file/d/1mNoM-mDNSaqoxgwZHod_F0MmrttUZspz/view?usp=sharing" 
         onClose={() => setIsVideoOpen(false)} 
       /> 
       <VideoModal 
         isOpen={isLaPuntitaVideoOpen} 
-        videoUrl="/videos/demo_lapuntita.mp4" 
+        videoUrl="https://drive.google.com/file/d/1kiKX-rTdQ6A9EWuQ5JFfWFJB5x2u1_8p/view?usp=sharing" 
         onClose={() => setIsLaPuntitaVideoOpen(false)} 
       />
 

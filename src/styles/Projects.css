@@ -161,8 +161,9 @@
   background: #00ffaa;
   color: #0a0a0a;
 }
+
 .secondary-projects {
-  display: none; 
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
 }
@@ -178,7 +179,29 @@
     display: none;
   }
 
-  .projects-grid.show-all .secondary-projects {
-    display: grid;
+  .projects-grid.show-all .secondary-projects .project-card:last-child:nth-child(odd) {
+    width: 100%;
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 901px) {
+  /* Oculta desde el tercer proyecto secundario en adelante por defecto */
+  .secondary-projects .project-card:nth-child(n+3) {
+    display: none;
+  }
+
+  /* Cuando se activa 'Ver más', muestra los proyectos ocultos */
+  .projects-grid.show-all .secondary-projects .project-card:nth-child(n+3) {
+    display: flex; 
+  }
+
+  /* --- NUEVA REGLA PARA CENTRAR EL PROYECTO SOLITARIO --- */
+  /* Si el proyecto es el ÚLTIMO y además es un número IMPAR (el 3ero, 5to, etc.) 
+     se expandirá a las dos columnas y lo centraremos internamente */
+  .projects-grid.show-all .secondary-projects .project-card:last-child:nth-child(odd) {
+    grid-column: span 2; /* Ocupa el ancho de las dos columnas */
+    justify-self: center; /* Se centra horizontalmente en el grid */
+    width: 50%; /* Mantiene el tamaño original para que no se vea gigante */
   }
 }

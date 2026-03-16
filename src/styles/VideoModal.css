@@ -1,39 +1,56 @@
 .video-modal-overlay {
-  position: fixed;
+  position: fixed; /* Esto lo saca del flujo y lo pone sobre todo */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85); /* Fondo opaco */
-  backdrop-filter: blur(8px);
-  
-  /* ESTO CENTRA EL CONTENIDO */
+  background-color: rgba(0, 0, 0, 0.85); /* Fondo opaco traslúcido */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque premium */
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  z-index: 3000;
+  z-index: 9999; /* Valor muy alto para estar sobre el Navbar */
 }
 
 .video-modal-content {
   position: relative;
   width: 90%;
   max-width: 900px;
-  /* Eliminamos márgenes manuales para que Flexbox mande */
+  aspect-ratio: 16 / 9; /* Mantiene la forma del video */
   background: #000;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 50px rgba(0, 255, 170, 0.2);
-  
-  /* Asegura que el video no se desborde si es muy alto */
-  max-height: 85vh; 
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 0 50px rgba(0, 255, 170, 0.3);
 }
 
-.video-player {
+.video-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(0, 255, 170, 0.2);
+  color: #00ffaa;
+  border: none;
+  font-size: 30px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.video-modal-close:hover {
+  background: #00ffaa;
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Estilo para que el iframe de Drive ocupe todo el espacio */
+.video-modal-content iframe {
   width: 100%;
-  height: auto;
-  max-height: inherit; /* Sigue el límite del contenedor */
-  display: block;
+  height: 100%;
+  border: none;
 }
