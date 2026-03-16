@@ -6,7 +6,6 @@ import ImageModal from "./ImageModal";
 import VideoModal from "./VideoModal";
 
 // Importa las imágenes de tus proyectos
-import bienesRaicesImg from "../assets/1759034658267.jpeg";
 import systemvetImg from "../assets/sistema_veterinario.png";
 import portfolioImg from "../assets/portafolio-personal.png";
 import educamovilImg from "../assets/educamovil.png";
@@ -14,7 +13,7 @@ import lapuntitaImg from "../assets/lapuntita.png"; // Asegúrate de tener esta 
 
 // Importaciones de iconos
 import { FaReact, FaGithub, FaCss3Alt, FaPython } from 'react-icons/fa';
-import { SiVite, SiNextdotjs, SiTailwindcss, SiFastapi, SiMysql, SiExpo } from 'react-icons/si';
+import { SiVite, SiFastapi, SiMysql, SiExpo } from 'react-icons/si';
 import { IoMdGlobe, IoMdPlay } from 'react-icons/io';
 
 function Projects() {
@@ -184,7 +183,7 @@ function Projects() {
                   >
                     <IoMdPlay /> Video Preliminar
                   </a>
-                  <a href="https://github.com/SubDSR" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                  <a href="https://github.com/AngelaEstrella/La-Puntita-Front.git" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                     <FaGithub /> GitHub
                   </a>
                 </div>
