@@ -1,7 +1,7 @@
 import React from "react";
 import { FaDownload, FaLinkedinIn, FaInstagram, FaGithub } from 'react-icons/fa';
 import "../styles/Hero.css";
-import robot from "../assets/robot_meme.png";
+import robot from "../assets/robot_meme2.png";
 
 function Hero() {
   return (

@@ -14,7 +14,7 @@ function About() {
           <div className="about-text-container">
             {/* La línea del h3 ha sido eliminada */}
             <p>
-              Soy David Sevan Reyes, actualmente estoy cursando el sexto ciclo de la carrera de Ingeniería de Software en la prestigiosa Universidad Nacional Mayor de San Marcos. 
+              Soy David Sevan Reyes, actualmente estoy cursando el séptimo ciclo de la carrera de Ingeniería de Software en la prestigiosa Universidad Nacional Mayor de San Marcos. 
               <br/><br/>
               Mi pasión por la tecnología, la programación y el diseño me impulsa cada día. Como desarrollador Fullstack, disfruto desafiando los límites y explorando nuevas tecnologías para ofrecer soluciones creativas, efectivas y completas, desde el backend hasta el frontend.
             </p>

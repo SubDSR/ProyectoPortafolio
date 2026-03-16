@@ -18,10 +18,12 @@
 .project-card {
   background: #141414;
   border: 1px solid #222;
-  padding: 1.5rem; /* <-- La clave para la alineación */
+  padding: 1.5rem;
   border-radius: 16px;
+  /* 1. Asegura que la tarjeta use Flexbox y crezca uniformemente */
   display: flex;
   flex-direction: column;
+  height: 100%; /* Permite que todas las tarjetas midan lo mismo en la fila */
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
   overflow: hidden;
@@ -73,6 +75,11 @@
   margin-bottom: 1rem;
 }
 
+.project-card img.img-top-focus {
+  /* object-position: X% Y%; */
+  object-position: 50% 25%; 
+}
+
 .tech-pill {
   display: inline-flex;
   align-items: center;
@@ -88,11 +95,14 @@
 .project-card p {
   color: #aaa;
   line-height: 1.6;
+  /* 2. Este es el truco clave: hace que el párrafo ocupe todo el espacio sobrante */
+  flex-grow: 1; 
+  margin-bottom: 1.5rem;
 }
 
 .buttons {
   display: flex;
-  margin-top: 1.5rem;
+  margin-top: auto; /* 3. Empuja el contenedor de botones siempre al fondo */
   border-radius: 50px;
   border: 2px solid #555;
   overflow: hidden;
@@ -152,9 +162,14 @@
   color: #0a0a0a;
 }
 .secondary-projects {
-  display: grid;
+  display: none; 
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
+}
+
+/* 2. Mostrarlos solo cuando el contenedor padre tenga la clase .show-all */
+.projects-grid.show-all .secondary-projects {
+  display: grid;
 }
 
 @media (max-width: 900px) {

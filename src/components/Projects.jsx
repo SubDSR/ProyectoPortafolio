@@ -3,20 +3,31 @@ import "../styles/Projects.css";
 
 // Importa el componente de modal
 import ImageModal from "./ImageModal"; 
+import VideoModal from "./VideoModal";
 
 // Importa las imágenes de tus proyectos
 import bienesRaicesImg from "../assets/1759034658267.jpeg";
 import systemvetImg from "../assets/sistema_veterinario.png";
 import portfolioImg from "../assets/portafolio-personal.png";
+import educamovilImg from "../assets/educamovil.png";
+import lapuntitaImg from "../assets/lapuntita.png"; // Asegúrate de tener esta imagen en tu carpeta de assets
 
 // Importaciones de iconos
 import { FaReact, FaGithub, FaCss3Alt, FaPython } from 'react-icons/fa';
-import { SiVite, SiNextdotjs, SiTailwindcss, SiFastapi, SiMysql } from 'react-icons/si';
-import { IoMdGlobe } from 'react-icons/io';
+import { SiVite, SiNextdotjs, SiTailwindcss, SiFastapi, SiMysql, SiExpo } from 'react-icons/si';
+import { IoMdGlobe, IoMdPlay } from 'react-icons/io';
 
 function Projects() {
   const [showAll, setShowAll] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  // Estados para EducaMovil
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const videoUrlEducaMovil = "/videos/demo_educamovil.mp4"; 
+
+  // NUEVO: Estados para La Puntita
+  const [isLaPuntitaVideoOpen, setIsLaPuntitaVideoOpen] = useState(false);
+  const videoUrlLaPuntita = "/videos/demo_lapuntita.mp4"; // Asegúrate de tenerlo en public/videos/
 
   // --- FUNCIÓN ACTUALIZADA CON CONDICIONAL PARA MÓVIL ---
   const toggleProjects = () => {
@@ -112,7 +123,75 @@ function Projects() {
                 </div>
               </div>
 
+
+              {/* NUEVO PROYECTO: EDUCAMOVIL */}
+              <div className="project-card">
+                <div className="project-category">Mobile</div>
+                {/* AGREGAMOS LA CLASE img-top-focus AQUÍ */}
+                <img 
+                  src={educamovilImg} 
+                  alt="EducaMovil" 
+                  className="img-top-focus" 
+                  onClick={() => openModal(educamovilImg)} 
+                />
+                <h3>EducaMovil</h3>
+                <div className="project-tech">
+                  <span className="tech-pill"><FaReact /> React Native</span>
+                  <span className="tech-pill"><SiExpo /> Expo</span>
+                </div>
+                <p>Aplicación móvil educativa diseñada para mejorar el aprendizaje interactivo.</p>
+                <div className="buttons">
+                  {/* Se cambia el comportamiento para abrir el modal al hacer clic */}
+                  <a 
+                    href="#!" 
+                    className="btn-primary" 
+                    onClick={(e) => {
+                      e.preventDefault(); // Evita que la página recargue o suba al inicio
+                      setIsVideoOpen(true); // Cambia el estado para que el video aparezca
+                    }}
+                  >
+                    <IoMdPlay /> Video Preliminar
+                  </a>
+                  <a href="https://github.com/SubDSR/EducaMovil" target="_blank" className="btn-secondary">
+                    <FaGithub /> GitHub
+                  </a>
+                </div>
+              </div>
+              
+              {/* --- NUEVO PROYECTO: LA PUNTITA --- */}
+              <div className="project-card">
+                <div className="project-category">Frontend</div>
+                <img 
+                  src={lapuntitaImg} // Recuerda importar la imagen arriba
+                  alt="La Puntita" 
+                  onClick={() => openModal(lapuntitaImg)}
+                  style={{ cursor: 'pointer' }} 
+                />
+                <h3>La Puntita</h3>
+                <div className="project-tech">
+                  <span className="tech-pill"><FaReact /> React</span>
+                  <span className="tech-pill"><FaCss3Alt /> CSS</span>
+                </div>
+                <p>Página web dedicada a la venta de comida, enfocada en una interfaz de usuario atractiva y funcional.</p>
+                <div className="buttons">
+                  <a 
+                    href="#!" 
+                    className="btn-primary" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsLaPuntitaVideoOpen(true);
+                    }}
+                  >
+                    <IoMdPlay /> Video Preliminar
+                  </a>
+                  <a href="https://github.com/SubDSR" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                    <FaGithub /> GitHub
+                  </a>
+                </div>
+              </div>
+
               {/* --- PROYECTO 3: BIENES RAÍCES --- */}
+              {/*}
               <div className="project-card">
                 <div className="project-category">Fullstack</div>
                 <img 
@@ -132,7 +211,7 @@ function Projects() {
                   <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
                   <a href="#" className="btn-secondary"><FaGithub /> GitHub</a>
                 </div>
-              </div>
+              </div>*/}
             </div>
           </div>
 
@@ -141,6 +220,17 @@ function Projects() {
           </button>
         </div>
       </section>
+
+      <VideoModal 
+        isOpen={isVideoOpen} 
+        videoUrl="/videos/demo_educamovil.mp4" 
+        onClose={() => setIsVideoOpen(false)} 
+      /> 
+      <VideoModal 
+        isOpen={isLaPuntitaVideoOpen} 
+        videoUrl="/videos/demo_lapuntita.mp4" 
+        onClose={() => setIsLaPuntitaVideoOpen(false)} 
+      />
 
       <ImageModal imageUrl={selectedImage} onClose={closeModal} />
     </>

@@ -1,0 +1,39 @@
+.video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Fondo opaco */
+  backdrop-filter: blur(8px);
+  
+  /* ESTO CENTRA EL CONTENIDO */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  z-index: 3000;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  /* Eliminamos márgenes manuales para que Flexbox mande */
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 255, 170, 0.2);
+  
+  /* Asegura que el video no se desborde si es muy alto */
+  max-height: 85vh; 
+  display: flex;
+  flex-direction: column;
+}
+
+.video-player {
+  width: 100%;
+  height: auto;
+  max-height: inherit; /* Sigue el límite del contenedor */
+  display: block;
+}
