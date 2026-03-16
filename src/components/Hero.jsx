@@ -14,11 +14,11 @@ function Hero() {
             <p> Estudiante de Ingeniería de Software. Apasionado por el desarrollo de software de extremo a extremo, cuidando tanto el diseño de la interfaz como la lógica del servidor.</p>
             
             <div className="hero-actions">
-              <a href="/tu_cv.pdf" download className="btn primary-btn">
+              <a href="/CV_David_Sevan.pdf" download="CV_David_Sevan.pdf" className="btn primary-btn">
                 <FaDownload /> Descargar CV
               </a>
               <div className="social-links">
-                <a href="https://linkedin.com/in/tu_perfil" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/david-sevan/" target="_blank" rel="noopener noreferrer">
                   <FaLinkedinIn />
                 </a>
                 <a href="https://www.instagram.com/david_sevan" target="_blank" rel="noopener noreferrer">

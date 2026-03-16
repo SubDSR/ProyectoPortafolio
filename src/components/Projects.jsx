@@ -79,7 +79,7 @@ function Projects() {
                 además del diseño y administración de la base de datos en MySQL.
               </p>
               <div className="buttons">
-                <a href="#" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
+                <a href="https://veterinariabd.vercel.app/" className="btn-primary"><IoMdGlobe /> Sitio Web</a>
                 <a 
                   href="https://github.com/KevinBohorquez/VeterinariaClinica_Backend" 
                   target="_blank" 
