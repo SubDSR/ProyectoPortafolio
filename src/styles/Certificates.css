@@ -1,15 +1,7 @@
-/* --- SECCIÓN DE CERTIFICADOS --- */
 .certificates-section {
   padding: 5rem 0;
-  background-color: #0a0a0a;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 3rem;
-  color: #fff;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 .swiper_container {
@@ -22,14 +14,15 @@
   height: 425px;
 }
 
-/* --- TARJETAS DE CERTIFICADOS --- */
+/* ── TARJETA ── */
 .certificate-card {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
 }
 
 .certificate-card img {
@@ -37,26 +30,24 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+  display: block;
 }
 
 .certificate-card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 
 .card-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(10, 10, 10, 0.75);
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
   color: #fff;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -68,11 +59,11 @@
 
 .card-overlay h3 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .card-overlay p {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   margin-bottom: 1.5rem;
   color: #ccc;
 }
@@ -81,48 +72,48 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #00ffaa;
+  background: var(--accent);
   color: #0a0a0a;
-  padding: 0.75rem 1.5rem;
+  padding: 0.7rem 1.4rem;
   border-radius: 50px;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  min-height: 44px;
 }
 
 .overlay-button:hover {
   transform: scale(1.05);
+  background: var(--accent-hover);
 }
 
-/* --- FLECHAS DE NAVEGACIÓN PERSONALIZADAS --- */
+/* ── NAVEGACIÓN ── */
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  
-  /* Centra el icono de react-icons dentro del círculo */
   display: flex;
   justify-content: center;
   align-items: center;
-  
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background-color: rgba(31, 31, 31, 0.85);
-  
-  z-index: 10; /* Asegura que las flechas estén por encima de las diapositivas */
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  z-index: 10;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background-color: #1f1f1f;
+  background: var(--accent-muted);
+  border-color: var(--accent);
   transform: translateY(-50%) scale(1.1);
 }
 
-/* Posiciona las flechas a los lados */
 .swiper-button-prev {
   left: 1rem;
 }
@@ -131,35 +122,44 @@
   right: 1rem;
 }
 
-/* Oculta la flecha azul por defecto de Swiper */
 .swiper-button-next::after,
 .swiper-button-prev::after {
   display: none;
 }
 
-/* --- PAGINACIÓN --- */
+.swiper-arrow-icon {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* ── PAGINACIÓN ── */
 .slider-controler {
   position: relative;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .swiper-pagination .swiper-pagination-bullet {
-  background-color: #00ffaa;
+  background: var(--accent);
+  opacity: 0.4;
 }
 
-/* --- RESPONSIVIDAD --- */
+.swiper-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .swiper-slide {
-    width: 250px;
-    height: 180px;
+    width: 260px;
+    height: 185px;
   }
 
   .swiper-button-next,
   .swiper-button-prev {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }

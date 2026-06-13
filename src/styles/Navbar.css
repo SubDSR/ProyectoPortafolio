@@ -1,82 +1,64 @@
-/* Contenedor principal de la barra de navegación */
 .navbar-container {
   position: fixed;
   top: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  
-  /* --- COLOR ACTUALIZADO --- */
-  /* Un gris oscuro semitransparente, más acorde con el fondo general */
-  background-color: rgba(16, 16, 16, 0.7); /* <-- CAMBIO CLAVE */
-  
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--navbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
   border-radius: 50px;
   padding: 0.5rem;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: var(--shadow-md);
   z-index: 1000;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* La lista que contiene todos los enlaces */
 .nav-links {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
-/* Estilo para cada enlace individual (y el botón de tema) */
 .nav-link {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
-  color: #c7c7c7;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  
   padding: 0.75rem 1.25rem;
   border-radius: 50px;
-  
   transition: all 0.3s ease;
+  min-height: 44px;
 }
 
-/* Estilo para el botón de cambio de tema */
-.theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.75rem;
-}
-
-/* Efecto al pasar el cursor sobre un enlace que NO está activo */
 .nav-link:not(.active):hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background-color: var(--accent-muted);
+  color: var(--accent);
 }
 
-/* Estilo específico para el enlace ACTIVO (el que está seleccionado) */
 .nav-link.active {
-  /* Un color verde azulado que contrasta bien con el nuevo fondo */
-  background-color: #004d40; /* <-- CAMBIO CLAVE */
-  color: #ffffff;
+  background-color: var(--accent-muted);
+  color: var(--accent);
+  font-weight: 600;
 }
 
-/* Ajusta el tamaño de los iconos de react-icons */
 .nav-link svg {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  flex-shrink: 0;
 }
 
-/* Oculta el texto en pantallas pequeñas */
 @media (max-width: 768px) {
   .nav-link span {
     display: none;
   }
+
   .nav-link {
     padding: 0.75rem;
   }

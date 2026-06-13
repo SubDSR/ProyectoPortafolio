@@ -1,41 +1,74 @@
 import React from 'react';
+import { FaUser } from 'react-icons/fa';
 import '../styles/About.css';
-import aboutImage from '../assets/robot_meme.png'; // Reutilizamos la imagen del robot
+import useScrollReveal from '../hooks/useScrollReveal';
 
 function About() {
+  const [sectionRef, isVisible] = useScrollReveal();
+
   return (
-    <section id="about" className="about-section">
+    <section
+      id="about"
+      className={`about-section reveal${isVisible ? ' visible' : ''}`}
+      ref={sectionRef}
+    >
       <div className="container">
         <h2 className="section-title">¿Quién soy?</h2>
-        <div className="about-content">
-          <div className="about-image-container">
-            <img src={aboutImage} alt="Sobre Mí" className="about-image" />
-          </div>
-          <div className="about-text-container">
-            {/* La línea del h3 ha sido eliminada */}
-            <p>
-              Soy David Sevan Reyes, actualmente estoy cursando el séptimo ciclo de la carrera de Ingeniería de Software en la prestigiosa Universidad Nacional Mayor de San Marcos. 
-              <br/><br/>
-              Mi pasión por la tecnología, la programación y el diseño me impulsa cada día. Como desarrollador Fullstack, disfruto desafiando los límites y explorando nuevas tecnologías para ofrecer soluciones creativas, efectivas y completas, desde el backend hasta el frontend.
-            </p>
-            
-            <div className="about-footer">
-              <div className="about-stats">
-                <div className="stat-item">
-                  <h4>+4</h4>
-                  <p>Proyectos Completados</p>
-                </div>
-                <div className="stat-item">
-                  <h4>+10</h4>
-                  <p>Tecnologías Manejadas</p>
+
+        <div className="about-inner">
+          {/* ── COLUMNA IZQUIERDA: tarjeta de perfil inclinada ── */}
+          <div className="about-card-visual">
+            <div className="profile-card">
+              {/* Decoraciones de fondo */}
+              <div className="profile-glow" />
+              <div className="profile-decor-circle" />
+
+              {/* ============================================================
+                  PLACEHOLDER: foto de perfil
+                  Asset esperado: src/assets/avatar/avatar-professional.png
+                  Reemplazar este bloque por:
+                  <img src={avatarProfessional} alt="David Sevan" className="profile-avatar-img" />
+                  ============================================================ */}
+              <div className="profile-avatar-area">
+                <div className="profile-avatar-placeholder" aria-hidden="true">
+                  <FaUser />
                 </div>
               </div>
 
-              <div className="availability-indicator">
-                Disponible para trabajar
+              <div className="profile-card-info">
+                <h3>David Sevan Reyes</h3>
+                <p className="profile-role">Desarrollador Fullstack</p>
+                <span className="profile-uni">UNMSM · Ing. de Software</span>
               </div>
             </div>
+          </div>
 
+          {/* ── COLUMNA DERECHA: contenido ── */}
+          <div className="about-content">
+            <div className="about-text">
+              <p>
+                Soy David Sevan Reyes, actualmente cursando el séptimo ciclo de
+                Ingeniería de Software en la Universidad Nacional Mayor de San Marcos.
+              </p>
+              <p>
+                Mi pasión por la tecnología, la programación y el diseño me impulsa
+                cada día. Disfruto construir soluciones completas, desde el diseño
+                de interfaces hasta la lógica del servidor, siempre con foco en
+                calidad y mejora continua.
+              </p>
+            </div>
+
+            <div className="about-stats-row">
+              <div className="stat-block">
+                <h4>+4</h4>
+                <p>Proyectos</p>
+              </div>
+              <div className="stat-sep" />
+              <div className="stat-block">
+                <h4>+10</h4>
+                <p>Tecnologías</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
