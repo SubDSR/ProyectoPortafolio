@@ -1,207 +1,301 @@
 .projects-section {
   padding: 5rem 0;
   text-align: center;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 
-.projects-title {
-  font-size: 2rem;
+.projects-section .section-title {
+  margin-bottom: 2rem;
+}
+
+/* Filtros tipo pill, como la referencia nueva. */
+.projects-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   margin-bottom: 3rem;
+}
+
+.filter-btn {
+  min-height: 52px;
+  padding: 0.7rem 1.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-muted);
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.5rem;
+  align-items: stretch;
 }
 
 .project-card {
-  background: #141414;
-  border: 1px solid #222;
-  padding: 1.5rem;
-  border-radius: 16px;
-  /* 1. Asegura que la tarjeta use Flexbox y crezca uniformemente */
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Permite que todas las tarjetas midan lo mismo en la fila */
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
+  height: 100%;
+  padding: 1.5rem;
   overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-surface);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* --- NUEVOS ESTILOS PARA LA ETIQUETA DE CATEGORÍA --- */
-.project-category {
-  position: absolute;
-  top: 2rem;  /* Alineado verticalmente con el padding del card */
-  left: 2rem; /* Alineado horizontalmente con el padding del card */
-  background: rgba(66, 62, 122, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #e0e0e0;
-  padding: 0.3rem 0.8rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  z-index: 10;
-  /* Borde más oscuro y sutil para que combine mejor */
-  border: 1px solid rgba(0, 0, 0, 0.2); 
+.project-card.featured {
+  grid-column: 1 / -1;
 }
-/* -------------------------------------------------------- */
 
 .project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-muted);
   transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(0, 255, 170, 0.3);
+}
+
+.project-category {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 2;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  background: rgba(66, 62, 122, 0.72);
+  color: #f0f0f0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .project-card img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  border: 1px solid var(--border);
   border-radius: 10px;
   margin-bottom: 1.5rem;
-  border: 1px solid #333;
+  background: var(--bg-surface-elevated);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover img {
+  border-color: var(--accent);
+}
+
+.project-card.featured img {
+  max-height: 575px;
+}
+
+.project-card img.img-top-focus {
+  object-position: 50% 25%;
 }
 
 .project-card h3 {
-  font-size: 1.5rem;
   margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.project-card.featured h3 {
+  font-size: 1.5rem;
 }
 
 .project-tech {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1rem;
-}
-
-.project-card img.img-top-focus {
-  /* object-position: X% Y%; */
-  object-position: 50% 25%; 
 }
 
 .tech-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid #444;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  color: #ccc;
-  background-color: #1f1f1f;
+  padding: 0.38rem 0.78rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card:hover .tech-pill {
+  border-color: var(--accent-muted);
+  color: var(--text-secondary);
 }
 
 .project-card p {
-  color: #aaa;
-  line-height: 1.6;
-  /* 2. Este es el truco clave: hace que el párrafo ocupe todo el espacio sobrante */
-  flex-grow: 1; 
+  flex-grow: 1;
   margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.project-card.featured p {
+  max-width: 880px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .buttons {
   display: flex;
-  margin-top: auto; /* 3. Empuja el contenedor de botones siempre al fondo */
-  border-radius: 50px;
-  border: 2px solid #555;
+  margin-top: auto;
   overflow: hidden;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  transition: border-color 0.3s ease;
+}
+
+.project-card:hover .buttons {
+  border-color: var(--accent);
 }
 
 .btn-primary,
 .btn-secondary {
-  flex: 1;
   display: inline-flex;
-  justify-content: center;
+  flex: 1;
+  min-height: 44px;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  text-decoration: none;
-  transition: all 0.3s;
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: none;
+  border: 0;
   border-radius: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-primary {
-  background: #00ffaa;
+  background: var(--accent);
   color: #0a0a0a;
 }
 
 .btn-primary:hover {
-  background: #00cc88;
+  background: var(--accent-hover);
 }
 
 .btn-secondary {
+  border-left: 2px solid var(--border);
   background: transparent;
-  color: #ccc;
-  border-left: 2px solid #555;
+  color: var(--text-secondary);
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 255, 170, 0.1);
-  color: #00ffaa;
-  border-left-color: #00ffaa;
+  border-left-color: var(--accent);
+  background: var(--accent-muted);
+  color: var(--accent);
 }
 
 .view-more-btn {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
   margin-top: 3rem;
-  background: none;
-  border: 1px solid #00ffaa;
-  color: #00ffaa;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
+  padding: 0.72rem 1.25rem;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s;
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .view-more-btn:hover {
-  background: #00ffaa;
+  background: var(--accent);
   color: #0a0a0a;
+  box-shadow: 0 0 22px var(--accent-muted);
+  transform: translateY(-2px);
 }
 
-.secondary-projects {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-}
-
-/* 2. Mostrarlos solo cuando el contenedor padre tenga la clase .show-all */
-.projects-grid.show-all .secondary-projects {
-  display: grid;
+.projects-empty {
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  text-align: center;
 }
 
 @media (max-width: 900px) {
-  .secondary-projects {
+  .projects-grid {
     grid-template-columns: 1fr;
-    display: none;
   }
 
-  .projects-grid.show-all .secondary-projects .project-card:last-child:nth-child(odd) {
-    width: 100%;
-    grid-column: span 1;
+  .project-card.featured {
+    grid-column: auto;
   }
 }
 
-@media (min-width: 901px) {
-  /* Oculta desde el tercer proyecto secundario en adelante por defecto */
-  .secondary-projects .project-card:nth-child(n+3) {
-    display: none;
+@media (max-width: 560px) {
+  .projects-section {
+    padding: 4rem 0;
   }
 
-  /* Cuando se activa 'Ver más', muestra los proyectos ocultos */
-  .projects-grid.show-all .secondary-projects .project-card:nth-child(n+3) {
-    display: flex; 
+  .projects-filters {
+    gap: 0.7rem;
+    margin-bottom: 2.2rem;
   }
 
-  /* --- NUEVA REGLA PARA CENTRAR EL PROYECTO SOLITARIO --- */
-  /* Si el proyecto es el ÚLTIMO y además es un número IMPAR (el 3ero, 5to, etc.) 
-     se expandirá a las dos columnas y lo centraremos internamente */
-  .projects-grid.show-all .secondary-projects .project-card:last-child:nth-child(odd) {
-    grid-column: span 2; /* Ocupa el ancho de las dos columnas */
-    justify-self: center; /* Se centra horizontalmente en el grid */
-    width: 50%; /* Mantiene el tamaño original para que no se vea gigante */
+  .filter-btn {
+    min-height: 48px;
+    padding: 0.62rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .project-card {
+    padding: 1rem;
+  }
+
+  .project-category {
+    top: 1.35rem;
+    left: 1.35rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    border-radius: 18px;
+  }
+
+  .btn-secondary {
+    border-top: 2px solid var(--border);
+    border-left: 0;
   }
 }
