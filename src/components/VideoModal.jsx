@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/VideoModal.css';
 
 function VideoModal({ videoUrl, isOpen, onClose }) {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const getEmbedUrl = (url) => {
@@ -12,9 +21,21 @@ function VideoModal({ videoUrl, isOpen, onClose }) {
   };
 
   return (
-    <div className="video-modal-overlay" onClick={onClose}>
+    <div
+      className="video-modal-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Video del proyecto"
+    >
       <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
-        {/* Se ha eliminado el botón de la "X" aquí */}
+        <button
+          className="video-modal-close"
+          onClick={onClose}
+          aria-label="Cerrar video"
+        >
+          &times;
+        </button>
         <iframe
           src={getEmbedUrl(videoUrl)}
           width="100%"
@@ -23,7 +44,7 @@ function VideoModal({ videoUrl, isOpen, onClose }) {
           allowFullScreen
           title="Video Preview"
           style={{ border: 'none' }}
-        ></iframe>
+        />
       </div>
     </div>
   );

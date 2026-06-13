@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/ImageModal.css';
 
 function ImageModal({ imageUrl, onClose }) {
-  // Si no hay URL de imagen, no renderizamos nada.
-  if (!imageUrl) {
-    return null;
-  }
+  useEffect(() => {
+    if (!imageUrl) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [imageUrl, onClose]);
 
-  // Usamos e.stopPropagation() para que al hacer clic en la imagen,
-  // no se cierre el modal (ya que el clic se propagaría al fondo).
+  if (!imageUrl) return null;
+
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div
+      className="modal-backdrop"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Vista ampliada del proyecto"
+    >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <img src={imageUrl} alt="Vista ampliada del proyecto" className="modal-image" />
-        <button className="close-button" onClick={onClose}>&times;</button>
+        <button
+          className="close-button"
+          onClick={onClose}
+          aria-label="Cerrar imagen"
+        >
+          &times;
+        </button>
       </div>
     </div>
   );
