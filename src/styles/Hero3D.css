@@ -1,0 +1,515 @@
+/* ============================================================
+   HERO 3D — sección principal con pseudo-3D y parallax
+   ============================================================ */
+.hero3d {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  overflow: hidden;
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease;
+  perspective: 1000px;
+}
+
+/* ── ORBES DE FONDO ── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orb-1 {
+  width: 450px;
+  height: 450px;
+  background: var(--accent-muted);
+  top: -80px;
+  right: 8%;
+  opacity: 0.5;
+}
+
+.hero-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(100, 108, 255, 0.08);
+  bottom: 10%;
+  left: 5%;
+  opacity: 0.6;
+}
+
+/* ── CAPA DE DOODLES ── */
+.hero-doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.12s ease;
+}
+
+.doodle {
+  position: absolute;
+  color: var(--ink-color);
+}
+
+.doodle-arrow-1 {
+  width: 80px;
+  height: 60px;
+  top: 22%;
+  right: 22%;
+  transform: rotate(-15deg);
+}
+
+.doodle-circle-1 {
+  width: 65px;
+  height: 65px;
+  bottom: 18%;
+  right: 12%;
+  opacity: 0.7;
+}
+
+.doodle-wave-1 {
+  width: 100px;
+  height: 30px;
+  top: 15%;
+  right: 38%;
+  transform: rotate(10deg);
+  opacity: 0.6;
+}
+
+.doodle-arrow-2 {
+  width: 50px;
+  height: 70px;
+  bottom: 28%;
+  left: 38%;
+  opacity: 0.5;
+}
+
+/* ── NOTAS MANUSCRITAS ── */
+.sketch-note {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  color: var(--ink-color);
+  background: var(--note-bg);
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  position: absolute;
+  pointer-events: none;
+  line-height: 1.4;
+  border: 1px solid var(--ink-color);
+  white-space: nowrap;
+}
+
+.note-1 {
+  top: 20%;
+  right: 16%;
+  transform: rotate(2.5deg);
+}
+
+.note-2 {
+  bottom: 18%;
+  left: 4%;
+  transform: rotate(-2deg);
+}
+
+.note-3 {
+  bottom: 8%;
+  left: 25%;
+  transform: rotate(1.5deg);
+}
+
+.note-4 {
+  bottom: 30%;
+  right: 6%;
+  transform: rotate(-3deg);
+  font-size: 0.85rem;
+  white-space: normal;
+  max-width: 140px;
+}
+
+/* ── LAYOUT PRINCIPAL ── */
+.hero3d-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── TEXTO ── */
+.hero3d-text {
+  flex: 1;
+  max-width: 580px;
+  position: relative;
+  transition: transform 0.12s ease;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-muted);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
+}
+
+.hero3d-title {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.hero-name {
+  color: var(--accent);
+  display: block;
+}
+
+.hero3d-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+}
+
+.hero3d-description {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+
+/* ── BOTONES CTA ── */
+.hero3d-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  border: 2px solid var(--accent);
+}
+
+.hero-btn-primary {
+  background: var(--accent-muted);
+  color: var(--accent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-btn-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0a0a0a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--accent-muted);
+}
+
+.hero-btn-secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+.hero-btn-secondary:hover {
+  background: var(--accent-muted);
+  transform: translateY(-2px);
+}
+
+/* ── REDES SOCIALES ── */
+.hero3d-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero3d-socials a {
+  font-size: 1.65rem;
+  color: var(--text-muted);
+  transition: color 0.3s ease, transform 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero3d-socials a:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* ── LADO VISUAL ── */
+.hero3d-visual {
+  flex: 1;
+  max-width: 480px;
+  min-height: 480px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── ÁREA DE AVATAR ── */
+.hero-avatar-area {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease;
+}
+
+/* ── AVATAR PLACEHOLDER ── */
+.hero-avatar-container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-avatar-placeholder {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 3px solid var(--accent-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 50px var(--accent-muted), var(--shadow-md);
+  animation: float-avatar 6s ease-in-out infinite;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.avatar-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-placeholder-icon {
+  font-size: 3.5rem;
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+.avatar-placeholder-inner span {
+  font-size: 0.8rem;
+  font-family: 'Caveat', cursive;
+  color: var(--text-muted);
+}
+
+/* Cuando se tenga el asset real */
+.hero-avatar-img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-muted);
+  box-shadow: 0 0 50px var(--accent-muted), var(--shadow-md);
+  animation: float-avatar 6s ease-in-out infinite;
+}
+
+@keyframes float-avatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ── CARDS FLOTANTES ── */
+.hero-avatar-card {
+  position: absolute;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+  z-index: 3;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.avatar-card-icon {
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.avatar-card-emoji {
+  font-size: 1rem;
+}
+
+.card-top-left {
+  top: -20px;
+  left: -50px;
+  animation: float-card 4.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.card-top-right {
+  top: -20px;
+  right: -50px;
+  animation: float-card 4.5s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.card-bottom-left {
+  bottom: 0px;
+  left: -50px;
+  animation: float-card 4.5s ease-in-out infinite;
+  animation-delay: -1s;
+}
+
+.card-bottom-right {
+  bottom: 0px;
+  right: -50px;
+  animation: float-card 4.5s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+@keyframes float-card {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-9px); }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-avatar-placeholder,
+  .hero-avatar-img,
+  .hero-avatar-card {
+    animation: none;
+  }
+  .hero-tag-dot,
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+/* ── RESPONSIVE TABLET ── */
+@media (max-width: 1024px) {
+  .hero3d-visual {
+    max-width: 380px;
+    min-height: 380px;
+  }
+  .hero-avatar-area {
+    width: 270px;
+    height: 270px;
+  }
+  .hero-avatar-placeholder,
+  .hero-avatar-img {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* ── RESPONSIVE MÓVIL ── */
+@media (max-width: 900px) {
+  .hero3d {
+    padding-top: 110px;
+    padding-bottom: 60px;
+  }
+
+  .hero3d-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .hero3d-text {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .hero3d-visual {
+    max-width: 260px;
+    min-height: 260px;
+    order: 1;
+  }
+
+  .hero-avatar-area {
+    width: 220px;
+    height: 220px;
+  }
+
+  .hero-avatar-placeholder,
+  .hero-avatar-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero3d-description {
+    max-width: 100%;
+  }
+
+  .hero3d-actions {
+    justify-content: center;
+    gap: 0.9rem;
+  }
+
+  .hero3d-socials {
+    justify-content: center;
+  }
+
+  /* Ocultar decoraciones en móvil */
+  .hero-doodles,
+  .hero-avatar-card {
+    display: none;
+  }
+
+  .sketch-note {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero3d-title {
+    font-size: 2rem;
+  }
+
+  .hero-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
