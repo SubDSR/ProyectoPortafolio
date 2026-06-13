@@ -1,61 +1,84 @@
 import React from 'react';
-import '../styles/Tecnologias.css'; // Asegúrate de que el nombre del archivo CSS sea correcto
+import '../styles/Tecnologias.css';
+import useScrollReveal from '../hooks/useScrollReveal';
 
-// Importa los iconos de las tecnologías que vamos a usar
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPython } from 'react-icons/fa';
-import { SiMysql, SiFastapi } from 'react-icons/si';
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaGitAlt,
+  FaGithub,
+  FaCode,
+} from 'react-icons/fa';
+import { SiFastapi, SiFigma, SiMysql, SiVite } from 'react-icons/si';
 
-// Reutilizamos la solución del icono SVG para SQL Server para evitar errores
 import sqlserverLogo from '../assets/sqlserver-icon.png';
-import pythonLogo from '../assets/python-icon.png'; // o .png si prefieres
+import pythonLogo from '../assets/python-icon.png';
 
-function Technologies() {
+/* ── Fila superior: Frontend + Backend + DB ── */
+const row1 = [
+  { name: 'HTML',       iconEl: <FaHtml5 /> },
+  { name: 'CSS',        iconEl: <FaCss3Alt /> },
+  { name: 'JavaScript', iconEl: <FaJs /> },
+  { name: 'React',      iconEl: <FaReact /> },
+  { name: 'Python',     iconEl: <img src={pythonLogo} alt="" className="mq-img" /> },
+  { name: 'FastAPI',    iconEl: <SiFastapi /> },
+  { name: 'MySQL',      iconEl: <SiMysql /> },
+];
+
+/* ── Fila inferior: Tools ── */
+const row2 = [
+  { name: 'SQL Server', iconEl: <img src={sqlserverLogo} alt="" className="mq-img" /> },
+  { name: 'Git',        iconEl: <FaGitAlt /> },
+  { name: 'GitHub',     iconEl: <FaGithub /> },
+  { name: 'Vite',       iconEl: <SiVite /> },
+  { name: 'Figma',      iconEl: <SiFigma /> },
+  { name: 'VS Code',    iconEl: <FaCode /> },
+];
+
+function MarqueePill({ tech }) {
   return (
-    <section id="technologies" className="technologies-section">
+    <div className="mq-pill">
+      <span className="mq-icon">{tech.iconEl}</span>
+      <span className="mq-name">{tech.name}</span>
+    </div>
+  );
+}
+
+function MarqueeRow({ items, reverse }) {
+  const doubled = [...items, ...items];
+  return (
+    <div className="mq-wrapper">
+      <div className={`mq-track${reverse ? ' mq-track--reverse' : ''}`}>
+        {doubled.map((tech, i) => (
+          <MarqueePill key={`${tech.name}-${i}`} tech={tech} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Tecnologias() {
+  const [sectionRef, isVisible] = useScrollReveal();
+
+  return (
+    <section
+      id="technologies"
+      className={`technologies-section reveal${isVisible ? ' visible' : ''}`}
+      ref={sectionRef}
+    >
       <div className="container">
         <h2 className="section-title">Tecnologías</h2>
-        <div className="tech-cards-container">
+        <p className="tech-subtitle">Herramientas que uso en mis proyectos</p>
+      </div>
 
-          {/* --- Tarjeta de Frontend --- */}
-          <div className="tech-card">
-            <h3>FRONTEND</h3>
-            <div className="tech-list">
-              <div className="tech-item"><FaHtml5 className="tech-icon html" /><span>HTML</span></div>
-              <div className="tech-item"><FaCss3Alt className="tech-icon css" /><span>CSS</span></div>
-              <div className="tech-item"><FaJs className="tech-icon js" /><span>JavaScript</span></div>
-              <div className="tech-item"><FaReact className="tech-icon react" /><span>React/JSX</span></div>
-            </div>
-          </div>
-
-          {/* --- Tarjeta de Backend --- */}
-          <div className="tech-card">
-            <h3>BACKEND</h3>
-            <div className="tech-list">
-              <div className="tech-item">
-                <img src={pythonLogo} alt="Python" className="tech-icon python-img" />
-                <span>Python</span>
-              </div>
-              <div className="tech-item"><SiFastapi className="tech-icon fastapi" /><span>FastAPI</span></div>
-            </div>
-          </div>
-
-          {/* --- Tarjeta de Base de Datos --- */}
-          <div className="tech-card">
-            <h3>BASE DE DATOS</h3>
-            <div className="tech-list">
-              <div className="tech-item"><SiMysql className="tech-icon mysql" /><span>MySQL</span></div>
-              <div className="tech-item">
-                <img src={sqlserverLogo} alt="SQL Server" className="tech-icon sqlserver-img" />
-                <span>SQL Server</span>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
+      <div className="mq-rows">
+        <MarqueeRow items={row1} reverse={false} />
+        <MarqueeRow items={row2} reverse={true} />
       </div>
     </section>
   );
 }
 
-export default Technologies;
+export default Tecnologias;
