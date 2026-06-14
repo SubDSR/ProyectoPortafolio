@@ -5,6 +5,7 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaEnvelope,
   FaGamepad,
   FaPalette,
 } from 'react-icons/fa';
@@ -175,6 +176,14 @@ function Hero3D() {
                   aria-label="GitHub de David Sevan"
                 >
                   <FaGithub />
+                </a>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=davidsevanr%40gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Abrir Gmail para enviar correo a David Sevan"
+                >
+                  <FaEnvelope />
                 </a>
               </div>
             </div>
