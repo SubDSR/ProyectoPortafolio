@@ -230,18 +230,18 @@
 }
 
 .hero-btn-primary {
-  background: var(--accent-muted);
+  background: var(--surface-glass);
   color: var(--accent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 .hero-btn-primary:hover {
-  background: var(--accent);
+  background: var(--accent-muted);
   border-color: var(--accent);
-  color: #0a0a0a;
+  color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--accent-muted);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 .hero-btn-secondary {

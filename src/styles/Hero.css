@@ -2,8 +2,8 @@
 
 /* La sección .hero ahora solo se preocupa de la altura y el fondo */
 .hero {
-  background: radial-gradient(circle at top left, #1e1e1e, #0a0a0a);
-  color: #fff;
+  background: radial-gradient(circle at top left, var(--bg-surface-elevated), var(--bg-primary));
+  color: var(--text-primary);
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@
 }
 
 .hero-text span {
-  color: #00ffaa;
+  color: var(--accent);
 }
 
 .hero-text p {
@@ -114,13 +114,13 @@
 /* Estilo específico para el botón de "Descargar CV" */
 .primary-btn {
   background-color: transparent;
-  color: #00ffaa;
-  border: 2px solid #00ffaa;
+  color: var(--accent);
+  border: 2px solid var(--accent);
 }
 
 .primary-btn:hover {
-  background-color: #00ffaa;
-  color: #1e1e1e;
+  background-color: var(--accent);
+  color: var(--button-text-on-accent);
 }
 
 /* Estilos para los enlaces de redes sociales */
@@ -131,12 +131,12 @@
 
 .social-links a {
   font-size: 1.8rem;
-  color: #e0e0e0;
+  color: var(--text-secondary);
   transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #00ffaa;
+  color: var(--accent);
 }
 
 

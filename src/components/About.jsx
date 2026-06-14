@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaUser } from 'react-icons/fa';
 import '../styles/About.css';
 import useScrollReveal from '../hooks/useScrollReveal';
+import fotoPerfil from '../assets/foto_perfil.png';
 
 function About() {
   const [sectionRef, isVisible] = useScrollReveal();
@@ -23,22 +23,18 @@ function About() {
               <div className="profile-glow" />
               <div className="profile-decor-circle" />
 
-              {/* ============================================================
-                  PLACEHOLDER: foto de perfil
-                  Asset esperado: src/assets/avatar/avatar-professional.png
-                  Reemplazar este bloque por:
-                  <img src={avatarProfessional} alt="David Sevan" className="profile-avatar-img" />
-                  ============================================================ */}
               <div className="profile-avatar-area">
-                <div className="profile-avatar-placeholder" aria-hidden="true">
-                  <FaUser />
-                </div>
+                <img src={fotoPerfil} alt="David Sevan Reyes" className="profile-avatar-img" />
               </div>
 
               <div className="profile-card-info">
                 <h3>David Sevan Reyes</h3>
                 <p className="profile-role">Desarrollador Fullstack</p>
                 <span className="profile-uni">UNMSM · Ing. de Software</span>
+                <span className="profile-availability">
+                  <span className="availability-dot" />
+                  Disponible
+                </span>
               </div>
             </div>
           </div>
@@ -46,11 +42,15 @@ function About() {
           {/* ── COLUMNA DERECHA: contenido ── */}
           <div className="about-content">
             <div className="about-text">
-              <p>
+              <p className="about-mobile-summary">
+                Desarrollador Fullstack en formación, enfocado en crear interfaces claras
+                y soluciones completas con criterio técnico y visual.
+              </p>
+              <p className="about-text-primary">
                 Soy David Sevan Reyes, actualmente cursando el séptimo ciclo de
                 Ingeniería de Software en la Universidad Nacional Mayor de San Marcos.
               </p>
-              <p>
+              <p className="about-text-detail">
                 Mi pasión por la tecnología, la programación y el diseño me impulsa
                 cada día. Disfruto construir soluciones completas, desde el diseño
                 de interfaces hasta la lógica del servidor, siempre con foco en

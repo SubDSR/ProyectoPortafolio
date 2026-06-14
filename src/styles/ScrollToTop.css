@@ -6,7 +6,7 @@
   height: 48px;
   border-radius: 50%;
   background: var(--accent);
-  color: #0a0a0a;
+  color: var(--button-text-on-accent);
   border: none;
   cursor: pointer;
   display: flex;
@@ -36,5 +36,16 @@
   .scroll-to-top {
     transition: opacity 0.3s ease;
     transform: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .scroll-to-top {
+    right: 1rem;
+    bottom: 1rem;
+    width: 42px;
+    height: 42px;
+    font-size: 0.95rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import '../styles/Certificates.css';
 import { FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaBrain, FaChartLine, FaCloud, FaDatabase } from 'react-icons/fa6';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 import certDiseGra from '../assets/Certificado_DiseñoGrafico.jpg';
@@ -21,6 +22,11 @@ const certificates = [
     title: 'Diseño Gráfico con IA',
     description: 'Programa de Iniciación Tecnológica — CTIC-UNI.',
     pdf: '/certificates/Certificado_DiseñoGrafico.pdf',
+    tag: 'Diseño & IA',
+    id: '017 - 0075683',
+    year: '2025',
+    command: 'run_diseno_grafico_ia.sh',
+    Icon: FaBrain,
   },
   {
     img: certCienDat,
@@ -28,6 +34,11 @@ const certificates = [
     title: 'Ciencia de Datos',
     description: 'Programa de Iniciación Tecnológica — CTIC-UNI.',
     pdf: '/certificates/Certificado_CienciaDeDatos.pdf',
+    tag: 'Data',
+    id: '017 - 0068761',
+    year: '2025',
+    command: 'run_ciencia_de_datos.sh',
+    Icon: FaChartLine,
   },
   {
     img: certCloudCompt,
@@ -35,6 +46,11 @@ const certificates = [
     title: 'Cloud Computing',
     description: 'Programa de Iniciación Tecnológica — CTIC-UNI.',
     pdf: '/certificates/Certificado_CloudComputing.pdf',
+    tag: 'Cloud',
+    id: '017 - 0078792',
+    year: '2025',
+    command: 'run_cloud_computing.sh',
+    Icon: FaCloud,
   },
   {
     img: certSQlBD,
@@ -42,18 +58,49 @@ const certificates = [
     title: 'SQL — Base de Datos 1',
     description: 'Programa de Iniciación Tecnológica — CTIC-UNI.',
     pdf: '/certificates/Certificado_SQLBaseDeDatos.pdf',
+    tag: 'Backend',
+    id: '017 - 0080527',
+    year: '2025',
+    command: 'run_sql_base_de_datos.sh',
+    Icon: FaDatabase,
   },
 ];
 
 function Certificates() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const certificateButtonRefs = useRef([]);
   const [sectionRef, isVisible] = useScrollReveal();
+  const activeCertificate = certificates[activeIndex];
+  const ActiveCertificateIcon = activeCertificate.Icon;
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    certificateButtonRefs.current[activeIndex]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }, [activeIndex, isMobile]);
+
+  const goToPreviousCertificate = () => {
+    setActiveIndex((currentIndex) => (
+      currentIndex === 0 ? certificates.length - 1 : currentIndex - 1
+    ));
+  };
+
+  const goToNextCertificate = () => {
+    setActiveIndex((currentIndex) => (
+      currentIndex === certificates.length - 1 ? 0 : currentIndex + 1
+    ));
+  };
 
   return (
     <section
@@ -62,56 +109,96 @@ function Certificates() {
       ref={sectionRef}
     >
       <div className="container">
-        <h2 className="section-title">Certificados</h2>
+        <div className="certificates-heading">
+          <h2 className="section-title">Certificados</h2>
+        </div>
 
-        <Swiper
-          effect="coverflow"
-          grabCursor
-          centeredSlides
-          loop={!isMobile}
-          slidesPerView="auto"
-          coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 1.5 }}
-          pagination={{ el: '.swiper-pagination', clickable: true }}
-          navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            clickable: true,
-          }}
-          modules={[EffectCoverflow, Pagination, Navigation]}
-          className="swiper_container"
-        >
-          {certificates.map((cert) => (
-            <SwiperSlide key={cert.title}>
-              <div className="certificate-card">
-                <img src={cert.img} alt={cert.alt} />
-                <div className="card-overlay">
-                  <h3>{cert.title}</h3>
-                  <p>{cert.description}</p>
-                  <a
-                    href={cert.pdf}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="overlay-button"
-                    aria-label={`Ver certificado de ${cert.title}`}
+        <div className="certificates-console" data-mobile={isMobile}>
+          <div className="terminal-panel" aria-label="Lista de certificados disponibles">
+            <div className="terminal-topbar">
+              <span className="terminal-dot terminal-dot-red" />
+              <span className="terminal-dot terminal-dot-yellow" />
+              <span className="terminal-dot terminal-dot-green" />
+              <span className="terminal-path">~/portfolio/certs</span>
+            </div>
+
+            <div className="terminal-body">
+              <p className="terminal-line terminal-muted">
+                <span className="prompt-arrow">➜</span>
+                ls ./credentials --executables
+              </p>
+
+              <div className="terminal-list">
+                {certificates.map((cert, index) => (
+                  <button
+                    type="button"
+                    key={cert.title}
+                    ref={(element) => {
+                      certificateButtonRefs.current[index] = element;
+                    }}
+                    className={`terminal-command${index === activeIndex ? ' active' : ''}`}
+                    onClick={() => setActiveIndex(index)}
+                    aria-pressed={index === activeIndex}
                   >
-                    <FaEye /> Ver Certificado
-                  </a>
-                </div>
+                    <span className="command-prompt">›</span>
+                    <span className="command-index">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="command-text">{isMobile ? cert.title : `./${cert.command}`}</span>
+                    {index === activeIndex && <span className="command-status">RUN</span>}
+                  </button>
+                ))}
               </div>
-            </SwiperSlide>
-          ))}
 
-          <div className="swiper-button-prev slider-arrow" aria-label="Anterior certificado">
-            <FaChevronLeft className="swiper-arrow-icon" />
-          </div>
-          <div className="swiper-button-next slider-arrow" aria-label="Siguiente certificado">
-            <FaChevronRight className="swiper-arrow-icon" />
+              <p className="terminal-line terminal-current">
+                <span className="prompt-arrow">➜</span>
+                ./view_{activeCertificate.command}
+                <span className="terminal-cursor" />
+              </p>
+            </div>
           </div>
 
-          <div className="slider-controler">
-            <div className="swiper-pagination" />
+          <div className="certificate-showcase">
+            <article className="certificate-card" key={activeCertificate.title}>
+              <div className="certificate-media">
+                <img src={activeCertificate.img} alt={activeCertificate.alt} />
+                <span className="tech-badge">{activeCertificate.tag}</span>
+                <span className="certificate-orb" aria-hidden="true">
+                  <ActiveCertificateIcon />
+                </span>
+              </div>
+
+              <div className="certificate-content">
+                <div className="certificate-meta">
+                  <span>N°: {activeCertificate.id || '__________'}</span>
+                  <span>{activeCertificate.year}</span>
+                </div>
+
+                <h3>{activeCertificate.title}</h3>
+                <span className="certificate-issuer">CTIC-UNI</span>
+                <p>{activeCertificate.description}</p>
+
+                <a
+                  href={activeCertificate.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="overlay-button"
+                  aria-label={`Ver certificado de ${activeCertificate.title}`}
+                >
+                  Ver Certificado <FaEye />
+                </a>
+              </div>
+            </article>
+
+            <div className="certificate-navigation" aria-label="Navegación de certificados">
+              <button type="button" onClick={goToPreviousCertificate} aria-label="Certificado anterior">
+                <FaChevronLeft />
+              </button>
+              <span>{String(activeIndex + 1).padStart(2, '0')} / {String(certificates.length).padStart(2, '0')}</span>
+              <button type="button" onClick={goToNextCertificate} aria-label="Siguiente certificado">
+                <FaChevronRight />
+              </button>
+            </div>
           </div>
-        </Swiper>
+        </div>
       </div>
     </section>
   );

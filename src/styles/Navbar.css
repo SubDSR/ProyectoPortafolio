@@ -38,11 +38,6 @@
   min-height: 44px;
 }
 
-.nav-link:not(.active):hover {
-  background-color: var(--accent-muted);
-  color: var(--accent);
-}
-
 .nav-link.active {
   background-color: var(--accent-muted);
   color: var(--accent);
@@ -52,6 +47,20 @@
 .nav-link svg {
   font-size: 1.15rem;
   flex-shrink: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:not(.active):hover {
+    background-color: var(--accent-muted);
+    color: var(--accent);
+  }
+}
+
+@media (hover: none) {
+  .nav-link:not(.active):hover {
+    background-color: transparent;
+    color: var(--text-secondary);
+  }
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Projects.css';
 import ImageModal from './ImageModal';
 import VideoModal from './VideoModal';
@@ -88,19 +88,30 @@ const projects = [
 function Projects() {
   const [activeFilter, setActiveFilter]   = useState('Todos');
   const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeVideoUrl, setActiveVideoUrl] = useState(null);
   const [sectionRef, isVisible] = useScrollReveal();
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const filtered =
     activeFilter === 'Todos'
       ? projects
       : projects.filter((p) => p.category === activeFilter);
 
-  const visibleProjects =
-    activeFilter === 'Todos' && !showAll ? filtered.slice(0, 3) : filtered;
+  const initialVisibleCount = isMobile ? 1 : 3;
 
-  const shouldShowViewMore = activeFilter === 'Todos' && filtered.length > 3;
+  const visibleProjects =
+    activeFilter === 'Todos' && !showAll
+      ? filtered.slice(0, initialVisibleCount)
+      : filtered;
+
+  const shouldShowViewMore = activeFilter === 'Todos' && filtered.length > initialVisibleCount;
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter);
@@ -108,14 +119,15 @@ function Projects() {
   };
 
   const toggleProjects = () => {
-    if (showAll && window.innerWidth < 900) {
-      const projectsSection = document.getElementById('projects');
-      if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    if (showAll) {
+      setShowAll(false);
+      requestAnimationFrame(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      return;
     }
 
-    setShowAll((current) => !current);
+    setShowAll(true);
   };
 
   return (

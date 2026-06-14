@@ -4,20 +4,26 @@
    VARIABLES DE TEMA — MODO OSCURO (default)
    ============================================================ */
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-surface: #141414;
-  --bg-surface-elevated: #1a1a1a;
+  --bg-primary: #090912;
+  --bg-surface: #141426;
+  --bg-surface-elevated: #1b1b33;
 
-  --text-primary: #e0e0e0;
-  --text-secondary: #c7c7c7;
-  --text-muted: #888888;
+  --text-primary: #f4f2ff;
+  --text-secondary: #cbc7e8;
+  --text-muted: #9893b8;
 
-  --accent: #00ffaa;
-  --accent-hover: #00cc88;
-  --accent-muted: rgba(0, 255, 170, 0.12);
+  --accent: #a78bfa;
+  --accent-hover: #8b5cf6;
+  --accent-strong: #7c3aed;
+  --accent-secondary: #38bdf8;
+  --danger: #fb7185;
+  --accent-muted: rgba(167, 139, 250, 0.14);
+  --accent-soft-border: color-mix(in srgb, var(--accent) 48%, var(--border));
+  --surface-glass: color-mix(in srgb, var(--bg-surface) 78%, transparent);
+  --button-text-on-accent: #130b2a;
 
-  --border: rgba(255, 255, 255, 0.1);
-  --border-muted: rgba(255, 255, 255, 0.05);
+  --border: rgba(244, 242, 255, 0.13);
+  --border-muted: rgba(244, 242, 255, 0.07);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
 
@@ -25,27 +31,33 @@
   --ink-color: rgba(255, 255, 255, 0.2);
   --note-bg: rgba(255, 255, 255, 0.06);
 
-  --navbar-bg: rgba(16, 16, 16, 0.75);
+  --navbar-bg: rgba(12, 12, 28, 0.76);
 }
 
 /* ============================================================
    VARIABLES DE TEMA — MODO CLARO
    ============================================================ */
 [data-theme="light"] {
-  --bg-primary: #f5f0e8;
+  --bg-primary: #f7f4ff;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #fafaf7;
+  --bg-surface-elevated: #f0ebff;
 
-  --text-primary: #1a1a1a;
-  --text-secondary: #3a3a3a;
-  --text-muted: #666666;
+  --text-primary: #1d1733;
+  --text-secondary: #40365f;
+  --text-muted: #70668f;
 
-  --accent: #0a7a4f;
-  --accent-hover: #086640;
-  --accent-muted: rgba(10, 122, 79, 0.1);
+  --accent: #6d28d9;
+  --accent-hover: #5b21b6;
+  --accent-strong: #4c1d95;
+  --accent-secondary: #0369a1;
+  --danger: #be123c;
+  --accent-muted: rgba(109, 40, 217, 0.1);
+  --accent-soft-border: color-mix(in srgb, var(--accent) 48%, var(--border));
+  --surface-glass: color-mix(in srgb, var(--bg-surface) 78%, transparent);
+  --button-text-on-accent: #ffffff;
 
-  --border: rgba(0, 0, 0, 0.12);
-  --border-muted: rgba(0, 0, 0, 0.06);
+  --border: rgba(29, 23, 51, 0.13);
+  --border-muted: rgba(29, 23, 51, 0.07);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
 
@@ -53,7 +65,7 @@
   --ink-color: rgba(0, 0, 0, 0.18);
   --note-bg: rgba(0, 0, 0, 0.05);
 
-  --navbar-bg: rgba(250, 250, 247, 0.85);
+  --navbar-bg: rgba(255, 255, 255, 0.86);
 }
 
 /* ============================================================
@@ -135,6 +147,13 @@ a {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+button:disabled,
+a[aria-disabled="true"] {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ============================================================
