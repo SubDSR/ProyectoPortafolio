@@ -274,6 +274,10 @@
    RESPONSIVE
    ====================================================== */
 @media (max-width: 900px) {
+  .about-section {
+    padding: 5rem 0 6rem;
+  }
+
   .about-inner {
     grid-template-columns: 1fr;
     gap: 4rem;
@@ -383,7 +387,7 @@
   }
 
   .about-text {
-    max-width: 300px;
+    max-width: 100%;
     gap: 0.9rem;
   }
 
