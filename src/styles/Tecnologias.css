@@ -1,6 +1,6 @@
 .technologies-section {
   padding: 5rem 0 6.5rem;
-  background-color: var(--bg-surface);
+  background-color: var(--bg-primary);
   transition: background-color 0.3s ease;
   overflow: hidden;
 }

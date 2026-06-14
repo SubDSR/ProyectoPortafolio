@@ -6,8 +6,9 @@ import Projects from './components/Projects';
 import About from './components/About';
 import Certificates from './components/Certificates';
 import Tecnologias from './components/Tecnologias';
+import Contact from './components/Contact';
 import ScrollToTop from './components/ScrollToTop';
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaEnvelope, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <About />
         <Certificates />
         <Tecnologias />
+        <Contact />
       </main>
       <footer className="footer">
         <p>
@@ -41,6 +43,14 @@ function App() {
             aria-label="LinkedIn de David Sevan"
           >
             <FaLinkedinIn />
+          </a>
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=davidsevanr%40gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Enviar correo a David Sevan"
+          >
+            <FaEnvelope />
           </a>
         </div>
       </footer>
