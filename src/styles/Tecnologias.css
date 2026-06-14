@@ -83,7 +83,7 @@
   border-radius: 0;
   white-space: nowrap;
   flex-shrink: 0;
-  opacity: 0.72;
+  opacity: 0.85;
   transition: opacity 0.25s ease, transform 0.25s ease;
   cursor: default;
 }

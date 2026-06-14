@@ -170,7 +170,7 @@ a[aria-disabled="true"] {
   padding: 2rem 0;
   text-align: center;
   border-top: 1px solid var(--border);
-  background-color: var(--bg-surface);
+  background-color: var(--bg-primary);
   color: var(--text-muted);
   font-size: 0.9rem;
   transition: background-color 0.3s ease;
