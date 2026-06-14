@@ -289,7 +289,7 @@ button.contact-btn {
 
   .contact-copy .section-title,
   .contact-copy p {
-    text-align: center;
+    text-align: left;
   }
 
   .contact-kicker {
@@ -301,12 +301,7 @@ button.contact-btn {
   }
 
   .contact-actions {
-    justify-content: center;
-  }
-
-  .contact-copy p {
-    margin-right: auto;
-    margin-left: auto;
+    justify-content: flex-start;
   }
 }
 
