@@ -1,0 +1,350 @@
+.contact-section {
+  padding: 6rem 0;
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+.contact-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 18% 0%, var(--accent-muted), transparent 22rem),
+    var(--bg-surface);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-copy {
+  min-width: 0;
+}
+
+.contact-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-kicker::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14), 0 0 16px rgba(16, 185, 129, 0.64);
+}
+
+.contact-copy .section-title {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.contact-copy p {
+  max-width: 540px;
+  margin: 0 0 1.8rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+button.contact-btn {
+  cursor: pointer;
+  background: none;
+  font-family: inherit;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-btn-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--button-text-on-accent);
+}
+
+.contact-btn-secondary {
+  border: 1px solid var(--accent-soft-border);
+  background: var(--surface-glass);
+  color: var(--accent);
+  backdrop-filter: blur(12px);
+}
+
+.contact-btn:hover,
+.contact-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.gmail-panel {
+  overflow: hidden;
+  border: 1px solid var(--accent-soft-border);
+  border-radius: 22px;
+  background: var(--bg-primary);
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.24),
+    0 0 0 1px var(--border-muted);
+}
+
+.gmail-panel-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.gmail-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+}
+
+.gmail-dot-red {
+  background: #ff5f57;
+}
+
+.gmail-dot-yellow {
+  background: #ffbd2e;
+}
+
+.gmail-dot-green {
+  background: #28c840;
+}
+
+.gmail-panel-title {
+  margin-left: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.gmail-panel-body {
+  padding: 1rem 1.15rem 1.3rem;
+}
+
+.gmail-field {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 42px;
+  border-bottom: 1px solid var(--border-muted);
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+.gmail-field strong {
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gmail-message {
+  min-height: 150px;
+  padding-top: 1.1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.gmail-message p {
+  margin: 0 0 0.25rem;
+}
+
+.gmail-greeting {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.gmail-intro {
+  margin-bottom: 1rem !important;
+}
+
+.gmail-template-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.gmail-template-row {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gmail-template-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.gmail-template-line {
+  display: block;
+  height: 1px;
+  border-bottom: 1.5px dashed color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 999px;
+}
+
+.gmail-panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.15rem 1.15rem;
+}
+
+.gmail-send-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--accent-soft-border);
+  border-radius: 999px;
+  background: var(--accent-muted);
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 800;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.gmail-send-btn:hover,
+.gmail-send-btn:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.copy-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(1rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--button-text-on-accent);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 9999;
+}
+
+.copy-toast-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+[data-theme="light"] .contact-shell,
+[data-theme="light"] .gmail-panel {
+  box-shadow: 0 24px 70px rgba(76, 29, 149, 0.12);
+}
+
+[data-theme="light"] .gmail-panel {
+  background: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .contact-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .gmail-panel {
+    display: none;
+  }
+
+  .contact-copy .section-title,
+  .contact-copy p {
+    text-align: center;
+  }
+
+  .contact-kicker {
+    justify-content: flex-start;
+  }
+
+  .kicker-extra {
+    display: none;
+  }
+
+  .contact-actions {
+    justify-content: center;
+  }
+
+  .contact-copy p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-section {
+    padding: 4.5rem 0;
+  }
+
+  .contact-shell {
+    padding: 1rem;
+    border-radius: 22px;
+  }
+
+  .contact-copy .section-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-copy p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+
+  .gmail-field {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.55rem 0;
+  }
+
+  .gmail-message {
+    min-height: 128px;
+    font-size: 0.88rem;
+  }
+}

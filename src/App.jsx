@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import About from './components/About';
 import Certificates from './components/Certificates';
 import Tecnologias from './components/Tecnologias';
+import Contact from './components/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
@@ -19,6 +20,7 @@ function App() {
         <About />
         <Certificates />
         <Tecnologias />
+        <Contact />
       </main>
       <footer className="footer">
         <p>
