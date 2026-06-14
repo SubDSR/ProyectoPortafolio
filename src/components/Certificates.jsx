@@ -160,9 +160,7 @@ function Certificates() {
             <article className="certificate-card" key={activeCertificate.title}>
               <div className="certificate-media">
                 <img src={activeCertificate.img} alt={activeCertificate.alt} />
-                <span className="tech-badge">
-                  <ActiveCertificateIcon aria-hidden="true" /> {activeCertificate.tag}
-                </span>
+                <span className="tech-badge">{activeCertificate.tag}</span>
                 <span className="certificate-orb" aria-hidden="true">
                   <ActiveCertificateIcon />
                 </span>

@@ -272,7 +272,6 @@
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.42rem;
   min-height: 28px;
   padding: 0 0.75rem;
   border: 1px solid color-mix(in srgb, var(--accent) 70%, #ffffff);
@@ -290,12 +289,6 @@
     0 0 0 3px color-mix(in srgb, var(--bg-primary) 42%, transparent),
     0 0 18px color-mix(in srgb, var(--accent) 20%, transparent);
   backdrop-filter: blur(10px);
-}
-
-.tech-badge svg {
-  width: 0.78rem;
-  height: 0.78rem;
-  flex-shrink: 0;
 }
 
 .certificate-orb {
