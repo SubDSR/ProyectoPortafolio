@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { Suspense, lazy, useRef, useEffect } from 'react';
 import {
   FaUser,
   FaDownload,
@@ -11,6 +11,8 @@ import {
 } from 'react-icons/fa';
 import '../styles/Hero3D.css';
 
+const MinecraftAvatar = lazy(() => import('./MinecraftAvatar'));
+
 function Hero3D() {
   const heroRef = useRef(null);
   const layer1Ref = useRef(null); // avatar — movimiento pronunciado
@@ -22,10 +24,25 @@ function Hero3D() {
     if (!hero) return;
 
     let rafId;
+    let scrollTimer;
+    const layers = [layer1Ref, layer2Ref, layer3Ref];
+
+    const disableTransitions = () =>
+      layers.forEach((ref) => { if (ref.current) ref.current.style.transition = 'none'; });
+
+    const restoreTransitions = () =>
+      layers.forEach((ref) => { if (ref.current) ref.current.style.transition = ''; });
+
+    // Durante scroll solo desactivamos la transición; el transform queda donde estaba
+    const handleScroll = () => {
+      disableTransitions();
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(restoreTransitions, 150);
+    };
 
     const handleMouseMove = (e) => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (window.innerWidth < 900) return; // solo en desktop
+      if (window.innerWidth < 900) return;
 
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
@@ -47,18 +64,25 @@ function Hero3D() {
 
     const handleMouseLeave = () => {
       cancelAnimationFrame(rafId);
-      [layer1Ref, layer2Ref, layer3Ref].forEach((ref) => {
+      // Reset instantáneo (sin transición) para evitar el efecto deslizamiento
+      disableTransitions();
+      layers.forEach((ref) => {
         if (ref.current) ref.current.style.transform = 'translate3d(0,0,0)';
       });
+      // Dos frames de margen para que el reset se pinte antes de restaurar la transición
+      requestAnimationFrame(() => requestAnimationFrame(restoreTransitions));
     };
 
     hero.addEventListener('mousemove', handleMouseMove);
     hero.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       hero.removeEventListener('mousemove', handleMouseMove);
       hero.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(rafId);
+      clearTimeout(scrollTimer);
     };
   }, []);
 
@@ -152,18 +176,11 @@ function Hero3D() {
                 <span>Dev gamer</span>
               </div>
 
-              {/* ============================================================
-                  PLACEHOLDER: Avatar principal
-                  Asset esperado: src/assets/avatar/avatar-professional.png
-                  Cuando tengas el asset, reemplaza el bloque de abajo por:
-                  <img src={avatarProfessional} alt="David Sevan" className="hero-avatar-img" />
-                  ============================================================ */}
               <div className="hero-avatar-container">
                 <div className="hero-avatar-placeholder">
-                  <div className="avatar-placeholder-inner">
-                    <FaUser className="avatar-placeholder-icon" />
-                    <span>Avatar próximamente</span>
-                  </div>
+                  <Suspense fallback={null}>
+                    <MinecraftAvatar />
+                  </Suspense>
                 </div>
               </div>
 
