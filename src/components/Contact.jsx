@@ -8,15 +8,21 @@ const email = 'davidsevanr@gmail.com';
 const subject = 'Propuesta de colaboración — [Tu nombre]';
 const body = 'Hola David,\n\nVi tu portafolio y me gustaría contactarte.\n\nNombre: \nEmpresa / organización: \nTipo de proyecto: \nDisponibilidad estimada: \n\nCuéntame más sobre lo que tienes en mente.';
 const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 function Contact() {
   const [sectionRef, isVisible] = useScrollReveal();
   const [copied, setCopied] = useState(false);
+  const [isMobile] = useState(() => window.innerWidth < 768);
+
+  const emailHref = isMobile ? mailtoUrl : gmailUrl;
 
   function handleCopy() {
     navigator.clipboard.writeText(email).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      if (!isMobile) {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
     });
   }
 
@@ -41,12 +47,12 @@ function Contact() {
 
             <div className="contact-actions">
               <a
-                href={gmailUrl}
+                href={emailHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-btn contact-btn-primary"
               >
-                <SiGmail /> Abrir Gmail
+                <SiGmail /> {isMobile ? 'Enviar correo' : 'Abrir Gmail'}
               </a>
               <button
                 type="button"
@@ -100,7 +106,7 @@ function Contact() {
             </div>
 
             <div className="gmail-panel-footer">
-              <a href={gmailUrl} target="_blank" rel="noopener noreferrer" className="gmail-send-btn">
+              <a href={emailHref} target="_blank" rel="noopener noreferrer" className="gmail-send-btn">
                 <FaPaperPlane /> Redactar correo
               </a>
             </div>

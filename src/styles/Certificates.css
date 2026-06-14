@@ -122,6 +122,8 @@
 }
 
 .terminal-command {
+  -webkit-appearance: none;
+  appearance: none;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
@@ -210,10 +212,10 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.78;
+  opacity: 0.92;
   background-image:
-    linear-gradient(color-mix(in srgb, var(--accent) 18%, var(--border-muted)) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--accent) 18%, var(--border-muted)) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--accent) 28%, var(--border-muted)) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 28%, var(--border-muted)) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: radial-gradient(ellipse at center, #000 0%, #000 38%, transparent 76%);
   -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, #000 38%, transparent 76%);
@@ -446,12 +448,11 @@
 }
 
 [data-theme="light"] .certificates-console {
-  border: 2px solid rgba(109, 40, 217, 0.34);
-  background: #ffffff;
+  border: 1px solid rgba(109, 40, 217, 0.18);
+  background: #f7f4ff;
   box-shadow:
     0 28px 80px rgba(76, 29, 149, 0.16),
     0 8px 24px rgba(29, 23, 51, 0.08),
-    0 0 0 6px rgba(109, 40, 217, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
@@ -505,14 +506,14 @@
 }
 
 [data-theme="light"] .certificate-showcase {
-  background: #fbfaff;
+  background: #f7f4ff;
 }
 
 [data-theme="light"] .certificate-showcase::before {
-  opacity: 0.58;
+  opacity: 0.90;
   background-image:
-    linear-gradient(rgba(109, 40, 217, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(109, 40, 217, 0.14) 1px, transparent 1px);
+    linear-gradient(rgba(109, 40, 217, 0.40) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109, 40, 217, 0.40) 1px, transparent 1px);
 }
 
 [data-theme="light"] .certificate-card {
@@ -688,6 +689,7 @@
     padding: 0.55rem 0.72rem;
     border-color: var(--border);
     border-radius: 999px;
+    overflow: hidden;
     background: color-mix(in srgb, var(--bg-surface) 78%, transparent);
     scroll-snap-align: start;
     box-shadow: none;
@@ -759,19 +761,6 @@
     height: clamp(168px, 52vw, 230px);
   }
 
-  .tech-badge {
-    top: 12px;
-    left: 12px;
-    max-width: calc(100% - 70px);
-    min-height: 24px;
-    padding: 0 0.58rem;
-    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
-    background: color-mix(in srgb, var(--bg-surface) 76%, transparent);
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    box-shadow: none;
-  }
-
   .certificate-orb {
     display: none;
   }
@@ -835,6 +824,16 @@
     box-shadow:
       0 18px 42px rgba(76, 29, 149, 0.12),
       0 0 0 1px rgba(109, 40, 217, 0.12);
+  }
+
+  [data-theme="light"] .certificates-console {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  [data-theme="light"] .certificate-showcase {
+    background: transparent;
   }
 
 }

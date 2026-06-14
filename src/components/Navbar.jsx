@@ -33,13 +33,18 @@ function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  const scrollTo = (id) => (e) => {
+    e.preventDefault();
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <nav className="navbar-container" aria-label="Navegación principal">
       <ul className="nav-links">
         <li>
           <a
             href="#hero"
-            onClick={() => setActiveNav('#hero')}
+            onClick={scrollTo('#hero')}
             className={`nav-link${activeNav === '#hero' ? ' active' : ''}`}
             aria-label="Inicio"
           >
@@ -49,7 +54,7 @@ function Navbar() {
         <li>
           <a
             href="#projects"
-            onClick={() => setActiveNav('#projects')}
+            onClick={scrollTo('#projects')}
             className={`nav-link${activeNav === '#projects' ? ' active' : ''}`}
           >
             <FaCube />
@@ -59,7 +64,7 @@ function Navbar() {
         <li>
           <a
             href="#about"
-            onClick={() => setActiveNav('#about')}
+            onClick={scrollTo('#about')}
             className={`nav-link${activeNav === '#about' ? ' active' : ''}`}
           >
             <FaUser />
@@ -69,7 +74,7 @@ function Navbar() {
         <li>
           <a
             href="#certificates"
-            onClick={() => setActiveNav('#certificates')}
+            onClick={scrollTo('#certificates')}
             className={`nav-link${activeNav === '#certificates' ? ' active' : ''}`}
           >
             <FaGraduationCap />
@@ -79,7 +84,7 @@ function Navbar() {
         <li>
           <a
             href="#technologies"
-            onClick={() => setActiveNav('#technologies')}
+            onClick={scrollTo('#technologies')}
             className={`nav-link${activeNav === '#technologies' ? ' active' : ''}`}
           >
             <FaCode />
@@ -89,11 +94,11 @@ function Navbar() {
         <li>
           <a
             href="#contact"
-            onClick={() => setActiveNav('#contact')}
+            onClick={scrollTo('#contact')}
             className={`nav-link${activeNav === '#contact' ? ' active' : ''}`}
-            aria-label="Contacto"
           >
             <FaEnvelope />
+            <span>Contacto</span>
           </a>
         </li>
         <li>
