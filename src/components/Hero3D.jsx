@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { Suspense, lazy, useRef, useEffect } from 'react';
 import {
   FaUser,
   FaDownload,
@@ -10,6 +10,8 @@ import {
   FaPalette,
 } from 'react-icons/fa';
 import '../styles/Hero3D.css';
+
+const MinecraftAvatar = lazy(() => import('./MinecraftAvatar'));
 
 function Hero3D() {
   const heroRef = useRef(null);
@@ -174,18 +176,11 @@ function Hero3D() {
                 <span>Dev gamer</span>
               </div>
 
-              {/* ============================================================
-                  PLACEHOLDER: Avatar principal
-                  Asset esperado: src/assets/avatar/avatar-professional.png
-                  Cuando tengas el asset, reemplaza el bloque de abajo por:
-                  <img src={avatarProfessional} alt="David Sevan" className="hero-avatar-img" />
-                  ============================================================ */}
               <div className="hero-avatar-container">
                 <div className="hero-avatar-placeholder">
-                  <div className="avatar-placeholder-inner">
-                    <FaUser className="avatar-placeholder-icon" />
-                    <span>Avatar próximamente</span>
-                  </div>
+                  <Suspense fallback={null}>
+                    <MinecraftAvatar />
+                  </Suspense>
                 </div>
               </div>
 

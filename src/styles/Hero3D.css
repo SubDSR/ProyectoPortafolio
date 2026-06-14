@@ -315,47 +315,46 @@
 }
 
 .hero-avatar-placeholder {
+  position: relative;
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: var(--bg-surface);
+  will-change: transform;
+  background:
+    radial-gradient(circle at 50% 42%, transparent 38%, rgba(8, 9, 20, 0.28) 74%),
+    linear-gradient(180deg, rgba(124, 58, 237, 0.18), rgba(8, 9, 20, 0.18)),
+    url('../assets/minecraft-bg-dark.png');
+  background-position: center;
+  background-size: cover;
   border: 3px solid var(--accent-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 50px var(--accent-muted), var(--shadow-md);
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 32px rgba(0, 0, 0, 0.2),
+    0 0 50px var(--accent-muted),
+    var(--shadow-md);
   animation: float-avatar 6s ease-in-out infinite;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.avatar-placeholder-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+.hero-avatar-placeholder canvas {
+  position: relative;
+  z-index: 1;
 }
 
-.avatar-placeholder-icon {
-  font-size: 3.5rem;
-  color: var(--accent);
-  opacity: 0.5;
-}
-
-.avatar-placeholder-inner span {
-  font-size: 0.8rem;
-  font-family: 'Caveat', cursive;
-  color: var(--text-muted);
-}
-
-/* Cuando se tenga el asset real */
-.hero-avatar-img {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--accent-muted);
-  box-shadow: 0 0 50px var(--accent-muted), var(--shadow-md);
-  animation: float-avatar 6s ease-in-out infinite;
+[data-theme="light"] .hero-avatar-placeholder {
+  background:
+    radial-gradient(circle at 50% 42%, transparent 42%, rgba(255, 255, 255, 0.22) 76%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(124, 58, 237, 0.08)),
+    url('../assets/minecraft-bg-light.png');
+  background-position: center;
+  background-size: cover;
+  box-shadow:
+    inset 0 0 28px rgba(255, 255, 255, 0.18),
+    0 0 50px var(--accent-muted),
+    var(--shadow-md);
 }
 
 @keyframes float-avatar {
@@ -426,7 +425,6 @@
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   .hero-avatar-placeholder,
-  .hero-avatar-img,
   .hero-avatar-card {
     animation: none;
   }
@@ -446,8 +444,7 @@
     width: 270px;
     height: 270px;
   }
-  .hero-avatar-placeholder,
-  .hero-avatar-img {
+  .hero-avatar-placeholder {
     width: 240px;
     height: 240px;
   }
@@ -488,8 +485,7 @@
     height: 220px;
   }
 
-  .hero-avatar-placeholder,
-  .hero-avatar-img {
+  .hero-avatar-placeholder {
     width: 200px;
     height: 200px;
   }
