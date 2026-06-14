@@ -132,20 +132,29 @@
 
 /* ── LAYOUT PRINCIPAL ── */
 .hero3d-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "text-top visual"
+    "text-bottom visual";
+  column-gap: 3rem;
   position: relative;
   z-index: 2;
 }
 
 /* ── TEXTO ── */
-.hero3d-text {
-  flex: 1;
+.hero3d-text-top {
+  grid-area: text-top;
+  max-width: 580px;
+  align-self: end;
+}
+
+.hero3d-text-bottom {
+  grid-area: text-bottom;
   max-width: 580px;
   position: relative;
   transition: transform 0.12s ease;
+  align-self: start;
 }
 
 .hero-tag {
@@ -279,13 +288,14 @@
 
 /* ── LADO VISUAL ── */
 .hero3d-visual {
-  flex: 1;
+  grid-area: visual;
   max-width: 480px;
   min-height: 480px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: center;
 }
 
 /* ── ÁREA DE AVATAR ── */
@@ -447,25 +457,31 @@
 /* ── RESPONSIVE MÓVIL ── */
 @media (max-width: 900px) {
   .hero3d {
-    padding-top: 110px;
+    padding-top: 90px;
     padding-bottom: 60px;
   }
 
   .hero3d-inner {
+    display: flex;
     flex-direction: column;
     text-align: center;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
-  .hero3d-text {
+  .hero3d-text-top {
     max-width: 100%;
-    order: 2;
+    align-self: stretch;
   }
 
   .hero3d-visual {
     max-width: 260px;
     min-height: 260px;
-    order: 1;
+    align-self: center;
+  }
+
+  .hero3d-text-bottom {
+    max-width: 100%;
+    align-self: stretch;
   }
 
   .hero-avatar-area {
@@ -481,6 +497,7 @@
 
   .hero3d-description {
     max-width: 100%;
+    margin-bottom: 1.5rem;
   }
 
   .hero3d-actions {

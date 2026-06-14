@@ -123,8 +123,8 @@ function Hero3D() {
 
       <div className="container">
         <div className="hero3d-inner">
-          {/* ── LADO TEXTO ── */}
-          <div className="hero3d-text" ref={layer3Ref}>
+          {/* ── TEXTO SUPERIOR: tag + título ── */}
+          <div className="hero3d-text-top">
             <div className="hero-tag">
               <span className="hero-tag-dot" />
               Estudiante de Ingeniería de Software
@@ -134,7 +134,55 @@ function Hero3D() {
               Hola, soy
               <span className="hero-name">David Sevan</span>
             </h1>
+          </div>
 
+          {/* ── LADO VISUAL ── */}
+          <div className="hero3d-visual">
+            <div className="hero-avatar-area" ref={layer1Ref}>
+              {/* Cards flotantes */}
+              <div className="hero-avatar-card card-top-left" aria-hidden="true">
+                {/* PLACEHOLDER OPENAI: avatar-chibi.png */}
+                <FaUser className="avatar-card-icon" />
+                <span>Modo chibi</span>
+              </div>
+
+              <div className="hero-avatar-card card-top-right" aria-hidden="true">
+                {/* PLACEHOLDER OPENAI: avatar-gamer-dev.png */}
+                <FaGamepad className="avatar-card-icon" />
+                <span>Dev gamer</span>
+              </div>
+
+              {/* ============================================================
+                  PLACEHOLDER: Avatar principal
+                  Asset esperado: src/assets/avatar/avatar-professional.png
+                  Cuando tengas el asset, reemplaza el bloque de abajo por:
+                  <img src={avatarProfessional} alt="David Sevan" className="hero-avatar-img" />
+                  ============================================================ */}
+              <div className="hero-avatar-container">
+                <div className="hero-avatar-placeholder">
+                  <div className="avatar-placeholder-inner">
+                    <FaUser className="avatar-placeholder-icon" />
+                    <span>Avatar próximamente</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="hero-avatar-card card-bottom-left" aria-hidden="true">
+                {/* PLACEHOLDER OPENAI: avatar-voxel.png */}
+                <span className="avatar-card-emoji">🎮</span>
+                <span>Voxel</span>
+              </div>
+
+              <div className="hero-avatar-card card-bottom-right" aria-hidden="true">
+                {/* PLACEHOLDER OPENAI: avatar-lowpoly.png */}
+                <FaPalette className="avatar-card-icon" />
+                <span>Low poly</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ── TEXTO INFERIOR: subtítulo + descripción + acciones ── */}
+          <div className="hero3d-text-bottom" ref={layer3Ref}>
             <h2 className="hero3d-subtitle">Desarrollador Fullstack en formación</h2>
 
             <p className="hero3d-description">
@@ -185,51 +233,6 @@ function Hero3D() {
                 >
                   <FaEnvelope />
                 </a>
-              </div>
-            </div>
-          </div>
-
-          {/* ── LADO VISUAL ── */}
-          <div className="hero3d-visual">
-            <div className="hero-avatar-area" ref={layer1Ref}>
-              {/* Cards flotantes */}
-              <div className="hero-avatar-card card-top-left" aria-hidden="true">
-                {/* PLACEHOLDER OPENAI: avatar-chibi.png */}
-                <FaUser className="avatar-card-icon" />
-                <span>Modo chibi</span>
-              </div>
-
-              <div className="hero-avatar-card card-top-right" aria-hidden="true">
-                {/* PLACEHOLDER OPENAI: avatar-gamer-dev.png */}
-                <FaGamepad className="avatar-card-icon" />
-                <span>Dev gamer</span>
-              </div>
-
-              {/* ============================================================
-                  PLACEHOLDER: Avatar principal
-                  Asset esperado: src/assets/avatar/avatar-professional.png
-                  Cuando tengas el asset, reemplaza el bloque de abajo por:
-                  <img src={avatarProfessional} alt="David Sevan" className="hero-avatar-img" />
-                  ============================================================ */}
-              <div className="hero-avatar-container">
-                <div className="hero-avatar-placeholder">
-                  <div className="avatar-placeholder-inner">
-                    <FaUser className="avatar-placeholder-icon" />
-                    <span>Avatar próximamente</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="hero-avatar-card card-bottom-left" aria-hidden="true">
-                {/* PLACEHOLDER OPENAI: avatar-voxel.png */}
-                <span className="avatar-card-emoji">🎮</span>
-                <span>Voxel</span>
-              </div>
-
-              <div className="hero-avatar-card card-bottom-right" aria-hidden="true">
-                {/* PLACEHOLDER OPENAI: avatar-lowpoly.png */}
-                <FaPalette className="avatar-card-icon" />
-                <span>Low poly</span>
               </div>
             </div>
           </div>
