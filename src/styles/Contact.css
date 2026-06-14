@@ -12,6 +12,7 @@
   padding: clamp(1.5rem, 4vw, 3rem);
   border: 1px solid var(--border);
   border-radius: 28px;
+  overflow: hidden;
   background:
     radial-gradient(circle at 18% 0%, var(--accent-muted), transparent 22rem),
     var(--bg-surface);
