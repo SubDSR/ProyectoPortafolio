@@ -1,5 +1,6 @@
 .projects-section {
-  padding: 5rem 0;
+  scroll-margin-top: 6rem;
+  padding: 6rem 0 8rem;
   text-align: center;
   background-color: var(--bg-primary);
   transition: background-color 0.3s ease;
@@ -266,7 +267,7 @@
 
 @media (max-width: 560px) {
   .projects-section {
-    padding: 4rem 0;
+    padding: 4.5rem 0 5.5rem;
   }
 
   .projects-filters {
