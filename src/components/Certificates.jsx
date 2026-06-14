@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import '../styles/Certificates.css';
 import { FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaBrain, FaChartLine, FaCloud, FaDatabase } from 'react-icons/fa6';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 import certDiseGra from '../assets/Certificado_DiseñoGrafico.jpg';
@@ -25,6 +26,7 @@ const certificates = [
     id: '017 - 0075683',
     year: '2025',
     command: 'run_diseno_grafico_ia.sh',
+    Icon: FaBrain,
   },
   {
     img: certCienDat,
@@ -36,6 +38,7 @@ const certificates = [
     id: '017 - 0068761',
     year: '2025',
     command: 'run_ciencia_de_datos.sh',
+    Icon: FaChartLine,
   },
   {
     img: certCloudCompt,
@@ -47,6 +50,7 @@ const certificates = [
     id: '017 - 0078792',
     year: '2025',
     command: 'run_cloud_computing.sh',
+    Icon: FaCloud,
   },
   {
     img: certSQlBD,
@@ -58,20 +62,33 @@ const certificates = [
     id: '017 - 0080527',
     year: '2025',
     command: 'run_sql_base_de_datos.sh',
+    Icon: FaDatabase,
   },
 ];
 
 function Certificates() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [activeIndex, setActiveIndex] = useState(0);
+  const certificateButtonRefs = useRef([]);
   const [sectionRef, isVisible] = useScrollReveal();
   const activeCertificate = certificates[activeIndex];
+  const ActiveCertificateIcon = activeCertificate.Icon;
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    certificateButtonRefs.current[activeIndex]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }, [activeIndex, isMobile]);
 
   const goToPreviousCertificate = () => {
     setActiveIndex((currentIndex) => (
@@ -116,12 +133,16 @@ function Certificates() {
                   <button
                     type="button"
                     key={cert.title}
+                    ref={(element) => {
+                      certificateButtonRefs.current[index] = element;
+                    }}
                     className={`terminal-command${index === activeIndex ? ' active' : ''}`}
                     onClick={() => setActiveIndex(index)}
                     aria-pressed={index === activeIndex}
                   >
                     <span className="command-prompt">›</span>
-                    <span className="command-text">./{cert.command}</span>
+                    <span className="command-index">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="command-text">{isMobile ? cert.title : `./${cert.command}`}</span>
                     {index === activeIndex && <span className="command-status">RUN</span>}
                   </button>
                 ))}
@@ -139,8 +160,12 @@ function Certificates() {
             <article className="certificate-card" key={activeCertificate.title}>
               <div className="certificate-media">
                 <img src={activeCertificate.img} alt={activeCertificate.alt} />
-                <span className="tech-badge">● {activeCertificate.tag}</span>
-                <span className="certificate-orb">⌘</span>
+                <span className="tech-badge">
+                  <ActiveCertificateIcon aria-hidden="true" /> {activeCertificate.tag}
+                </span>
+                <span className="certificate-orb" aria-hidden="true">
+                  <ActiveCertificateIcon />
+                </span>
               </div>
 
               <div className="certificate-content">

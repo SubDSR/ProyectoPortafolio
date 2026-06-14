@@ -2,28 +2,18 @@
   position: relative;
   overflow: hidden;
   padding: 7.5rem 0 6rem;
-  background:
-    radial-gradient(circle at 78% 12%, var(--accent-muted), transparent 28rem),
-    linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface) 100%);
+  background: var(--bg-primary);
   transition: background-color 0.3s ease;
 }
 
 .certificates-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.38;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+  display: none;
 }
 
 .certificates-section .container {
   position: relative;
   z-index: 1;
+  max-width: 1320px;
 }
 
 .certificates-heading {
@@ -34,15 +24,14 @@
 .certificates-console {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(380px, 0.82fr);
-  width: min(100%, 1180px);
+  width: min(100%, 1240px);
   min-height: 620px;
   margin: 0 auto;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 28px;
-  background: color-mix(in srgb, var(--bg-surface) 84%, transparent);
+  background: var(--bg-surface);
   box-shadow: var(--shadow-md);
-  backdrop-filter: blur(18px);
 }
 
 .terminal-panel {
@@ -50,9 +39,7 @@
   min-width: 0;
   flex-direction: column;
   border-right: 1px solid var(--border);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--bg-primary) 92%, transparent), transparent),
-    color-mix(in srgb, var(--bg-surface) 80%, #000 20%);
+  background: #0f1020;
 }
 
 .terminal-topbar {
@@ -61,7 +48,7 @@
   gap: 0.55rem;
   min-height: 42px;
   padding: 0 1.35rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(244, 242, 255, 0.12);
 }
 
 .terminal-dot {
@@ -84,7 +71,7 @@
 
 .terminal-path {
   margin-left: 0.75rem;
-  color: color-mix(in srgb, var(--accent) 52%, var(--bg-primary));
+  color: var(--text-muted);
   font-family: 'Courier New', monospace;
   font-size: 0.82rem;
   letter-spacing: 0.02em;
@@ -94,15 +81,15 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.25rem;
-  padding: clamp(1.75rem, 4vw, 3.25rem);
+  justify-content: flex-start;
+  gap: 1.05rem;
+  padding: clamp(2.2rem, 3vw, 3rem) clamp(1.25rem, 2vw, 1.6rem);
 }
 
 .terminal-line,
 .terminal-command {
   font-family: 'Courier New', monospace;
-  font-size: clamp(0.82rem, 1.6vw, 0.98rem);
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
   line-height: 1.45;
 }
 
@@ -114,7 +101,7 @@
 }
 
 .terminal-muted {
-  color: color-mix(in srgb, var(--accent) 48%, var(--bg-primary));
+  color: var(--text-muted);
 }
 
 .terminal-current {
@@ -125,11 +112,13 @@
 .command-prompt {
   color: var(--accent);
   font-weight: 800;
+  font-size: 1.28em;
+  line-height: 1;
 }
 
 .terminal-list {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.82rem;
 }
 
 .terminal-command {
@@ -138,12 +127,12 @@
   align-items: center;
   gap: 0.65rem;
   width: 100%;
-  min-height: 42px;
-  padding: 0.62rem 0.7rem;
+  min-height: 46px;
+  padding: 0.68rem 0.78rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 12px;
   background: transparent;
-  color: color-mix(in srgb, var(--accent) 45%, var(--bg-primary));
+  color: var(--text-muted);
   cursor: pointer;
   text-align: left;
   transition:
@@ -156,23 +145,26 @@
 .terminal-command:hover,
 .terminal-command:focus-visible {
   color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 36%, transparent);
-  background: color-mix(in srgb, var(--accent-muted) 45%, transparent);
+  border-color: rgba(167, 139, 250, 0.18);
+  background: rgba(167, 139, 250, 0.08);
   outline: none;
-  transform: translateX(4px);
 }
 
 .terminal-command.active {
   color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-  background: color-mix(in srgb, var(--accent-muted) 68%, transparent);
-  box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: rgba(167, 139, 250, 0.24);
+  background: rgba(167, 139, 250, 0.13);
+  box-shadow: none;
 }
 
 .command-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.command-index {
+  display: none;
 }
 
 .command-status {
@@ -191,7 +183,6 @@
   height: 7px;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 14px var(--accent);
 }
 
 .terminal-cursor {
@@ -209,14 +200,28 @@
   align-items: center;
   justify-content: center;
   min-width: 0;
+  overflow: hidden;
   padding: clamp(2rem, 4.5vw, 3.75rem);
-  background:
-    radial-gradient(circle at 54% 16%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 18rem),
-    linear-gradient(90deg, color-mix(in srgb, var(--bg-primary) 88%, transparent), color-mix(in srgb, var(--bg-surface) 78%, transparent));
+  background: var(--bg-primary);
+}
+
+.certificate-showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.78;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--accent) 18%, var(--border-muted)) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 18%, var(--border-muted)) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, #000 38%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, #000 38%, transparent 76%);
 }
 
 .certificate-card {
   position: relative;
+  z-index: 1;
   width: min(100%, 330px);
   overflow: hidden;
   border: 1px solid var(--accent);
@@ -232,15 +237,7 @@
 }
 
 .certificate-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(115deg, transparent 0%, color-mix(in srgb, var(--accent) 20%, transparent) 32%, transparent 55%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 38%);
-  opacity: 0.78;
+  display: none;
 }
 
 .certificate-media {
@@ -275,19 +272,30 @@
   z-index: 2;
   display: inline-flex;
   align-items: center;
+  gap: 0.42rem;
   min-height: 28px;
   padding: 0 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, #ffffff);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-primary) 64%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--bg-surface) 88%, transparent), color-mix(in srgb, var(--bg-primary) 94%, transparent));
   color: var(--accent);
   font-family: 'Courier New', monospace;
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.28),
+    0 0 0 3px color-mix(in srgb, var(--bg-primary) 42%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 20%, transparent);
   backdrop-filter: blur(10px);
+}
+
+.tech-badge svg {
+  width: 0.78rem;
+  height: 0.78rem;
+  flex-shrink: 0;
 }
 
 .certificate-orb {
@@ -299,16 +307,26 @@
   place-items: center;
   width: 36px;
   height: 36px;
-  border: 1px solid var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, #ffffff);
   border-radius: 50%;
-  background: color-mix(in srgb, var(--accent-muted) 66%, var(--bg-primary));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--bg-surface) 88%, transparent), color-mix(in srgb, var(--bg-primary) 94%, transparent));
   color: var(--accent);
-  box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 34%, transparent);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.34),
+    0 0 0 3px color-mix(in srgb, var(--bg-primary) 54%, transparent),
+    0 0 22px color-mix(in srgb, var(--accent) 28%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.certificate-orb svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .certificate-content {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: 1.35rem 1.25rem 1.3rem;
 }
 
@@ -327,7 +345,7 @@
 
 .certificate-content h3 {
   margin: 0 0 0.65rem;
-  color: color-mix(in srgb, var(--bg-primary) 8%, #fff 92%);
+  color: var(--text-primary);
   font-size: clamp(1.15rem, 2vw, 1.35rem);
   line-height: 1.15;
 }
@@ -345,7 +363,7 @@
 
 .certificate-content p {
   margin: 0 0 1.35rem;
-  color: color-mix(in srgb, var(--bg-primary) 36%, #fff 64%);
+  color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.65;
 }
@@ -358,9 +376,9 @@
   width: 100%;
   min-height: 44px;
   padding: 0.78rem 1rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 72%, transparent);
+  border: 1px solid var(--accent-soft-border);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-surface) 62%, transparent);
+  background: var(--surface-glass);
   color: var(--accent);
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
@@ -379,15 +397,17 @@
 
 .overlay-button:hover,
 .overlay-button:focus-visible {
-  border-color: var(--accent-hover);
+  border-color: var(--accent);
   background: var(--accent-muted);
-  color: var(--accent-hover);
+  color: var(--accent);
   outline: none;
   transform: translateY(-2px);
   box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 26%, transparent);
 }
 
 .certificate-navigation {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -422,6 +442,154 @@
   background: var(--accent-muted);
   outline: none;
   transform: translateY(-2px);
+}
+
+[data-theme="light"] .certificates-section {
+  background: #f7f4ff;
+}
+
+[data-theme="light"] .certificates-section::before {
+  display: none;
+}
+
+[data-theme="light"] .certificates-console {
+  border: 2px solid rgba(109, 40, 217, 0.34);
+  background: #ffffff;
+  box-shadow:
+    0 28px 80px rgba(76, 29, 149, 0.16),
+    0 8px 24px rgba(29, 23, 51, 0.08),
+    0 0 0 6px rgba(109, 40, 217, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="light"] .terminal-panel {
+  border-right-color: rgba(109, 40, 217, 0.22);
+  background: #f3efff;
+}
+
+[data-theme="light"] .terminal-topbar {
+  border-bottom-color: rgba(109, 40, 217, 0.14);
+}
+
+[data-theme="light"] .terminal-path,
+[data-theme="light"] .terminal-muted {
+  color: #6b5f8f;
+}
+
+[data-theme="light"] .terminal-current,
+[data-theme="light"] .prompt-arrow,
+[data-theme="light"] .command-prompt {
+  color: #5b21b6;
+}
+
+[data-theme="light"] .terminal-command {
+  color: #6b5f8f;
+}
+
+[data-theme="light"] .terminal-command:hover,
+[data-theme="light"] .terminal-command:focus-visible {
+  color: #4c1d95;
+  border-color: rgba(109, 40, 217, 0.28);
+  background: rgba(109, 40, 217, 0.07);
+}
+
+[data-theme="light"] .terminal-command.active {
+  color: #4c1d95;
+  border-color: rgba(109, 40, 217, 0.38);
+  background: rgba(109, 40, 217, 0.12);
+  box-shadow: none;
+}
+
+[data-theme="light"] .command-status,
+[data-theme="light"] .certificate-navigation {
+  color: #5b21b6;
+}
+
+[data-theme="light"] .command-status::before,
+[data-theme="light"] .terminal-cursor {
+  background: #6d28d9;
+  box-shadow: none;
+}
+
+[data-theme="light"] .certificate-showcase {
+  background: #fbfaff;
+}
+
+[data-theme="light"] .certificate-showcase::before {
+  opacity: 0.58;
+  background-image:
+    linear-gradient(rgba(109, 40, 217, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109, 40, 217, 0.14) 1px, transparent 1px);
+}
+
+[data-theme="light"] .certificate-card {
+  border-color: rgba(109, 40, 217, 0.58);
+  background: #ffffff;
+  box-shadow:
+    0 24px 60px rgba(76, 29, 149, 0.16),
+    0 0 0 1px rgba(109, 40, 217, 0.14);
+}
+
+[data-theme="light"] .certificate-media {
+  background: #f7f4ff;
+}
+
+[data-theme="light"] .certificate-media::after {
+  background: linear-gradient(180deg, transparent, #ffffff);
+}
+
+[data-theme="light"] .tech-badge,
+[data-theme="light"] .certificate-orb {
+  border-color: rgba(109, 40, 217, 0.4);
+  color: #5b21b6;
+}
+
+[data-theme="light"] .certificate-orb {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 10px 24px rgba(76, 29, 149, 0.18),
+    0 0 0 3px rgba(255, 255, 255, 0.74);
+}
+
+[data-theme="light"] .tech-badge {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 10px 24px rgba(76, 29, 149, 0.14),
+    0 0 0 3px rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .certificate-meta,
+[data-theme="light"] .certificate-issuer {
+  color: #6d28d9;
+}
+
+[data-theme="light"] .certificate-content p {
+  color: #40365f;
+}
+
+[data-theme="light"] .overlay-button {
+  border-color: rgba(109, 40, 217, 0.5);
+  background: rgba(109, 40, 217, 0.06);
+  color: #5b21b6;
+}
+
+[data-theme="light"] .overlay-button:hover,
+[data-theme="light"] .overlay-button:focus-visible {
+  border-color: #6d28d9;
+  background: #6d28d9;
+  color: #ffffff;
+}
+
+[data-theme="light"] .certificate-navigation button {
+  border-color: rgba(109, 40, 217, 0.18);
+  background: rgba(255, 255, 255, 0.76);
+  color: #5b21b6;
+}
+
+[data-theme="light"] .certificate-navigation button:hover,
+[data-theme="light"] .certificate-navigation button:focus-visible {
+  border-color: rgba(109, 40, 217, 0.45);
+  background: rgba(109, 40, 217, 0.08);
 }
 
 @keyframes cursor-blink {
@@ -463,63 +631,217 @@
 
 @media (max-width: 640px) {
   .certificates-section {
-    padding: 5.5rem 0 4.5rem;
+    padding: 3.25rem 0 4.25rem;
+    background: var(--bg-primary);
+  }
+
+  .certificates-section::before {
+    display: none;
+  }
+
+  .certificates-heading {
+    margin-bottom: 1rem;
   }
 
   .certificates-console {
     min-height: auto;
-    border-radius: 20px;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .terminal-panel {
+    margin-bottom: 0.9rem;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .terminal-topbar {
-    padding: 0 1rem;
-  }
-
-  .terminal-path {
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: none;
   }
 
   .terminal-body {
-    padding: 1rem;
+    display: block;
+    padding: 0;
+  }
+
+  .terminal-line {
+    display: none;
+  }
+
+  .terminal-list {
+    display: flex;
+    gap: 0.55rem;
+    overflow-x: auto;
+    padding: 0.1rem 0.05rem 0.35rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .terminal-list::-webkit-scrollbar {
+    display: none;
   }
 
   .terminal-command {
+    grid-template-columns: auto minmax(0, 1fr);
+    flex: 0 0 min(62vw, 205px);
     min-height: 40px;
-    padding: 0.58rem 0.65rem;
+    padding: 0.55rem 0.72rem;
+    border-color: var(--border);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-surface) 78%, transparent);
+    scroll-snap-align: start;
+    box-shadow: none;
+  }
+
+  .terminal-command:hover,
+  .terminal-command:focus-visible {
+    transform: none;
+  }
+
+  .terminal-command.active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent-muted) 74%, var(--bg-surface));
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+
+  .command-prompt {
+    display: none;
+  }
+
+  .command-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .command-text {
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    line-height: 1.2;
   }
 
   .command-status {
     display: none;
   }
 
-  .terminal-current {
-    align-items: flex-start;
-    word-break: break-word;
+  .certificate-showcase {
+    padding: 0;
+    background: transparent;
+    overflow: visible;
   }
 
-  .certificate-showcase {
-    padding: 1.25rem 1rem 1.5rem;
+  .certificate-showcase::before {
+    display: none;
   }
 
   .certificate-card {
-    width: min(100%, 340px);
+    width: 100%;
+    overflow: hidden;
+    border-color: var(--border);
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, 0.26),
+      0 0 0 1px color-mix(in srgb, var(--border) 70%, transparent);
+  }
+
+  .certificate-card::before {
+    display: none;
   }
 
   .certificate-media {
-    height: 205px;
+    height: clamp(168px, 52vw, 230px);
+  }
+
+  .tech-badge {
+    top: 12px;
+    left: 12px;
+    max-width: calc(100% - 70px);
+    min-height: 24px;
+    padding: 0 0.58rem;
+    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+    background: color-mix(in srgb, var(--bg-surface) 76%, transparent);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    box-shadow: none;
+  }
+
+  .certificate-orb {
+    display: none;
+  }
+
+  .certificate-content {
+    padding: 1.1rem 1rem 1rem;
   }
 
   .certificate-meta {
     flex-direction: column;
-    gap: 0.35rem;
-    letter-spacing: 0.14em;
+    gap: 0.28rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.11em;
+  }
+
+  .certificate-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+  }
+
+  .certificate-issuer {
+    margin-bottom: 0.75rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+  }
+
+  .certificate-content p {
+    margin-bottom: 1rem;
+    font-size: 0.86rem;
+    line-height: 1.55;
   }
 
   .overlay-button {
-    letter-spacing: 0.14em;
+    min-height: 42px;
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--button-text-on-accent);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .certificate-navigation {
+    display: none;
+  }
+
+  [data-theme="light"] .certificates-section {
+    background: #f7f4ff;
+  }
+
+  [data-theme="light"] .terminal-command {
+    background: rgba(255, 255, 255, 0.82);
+  }
+
+  [data-theme="light"] .terminal-command.active {
+    background: rgba(109, 40, 217, 0.1);
+  }
+
+  [data-theme="light"] .certificate-card {
+    background: #ffffff;
+    box-shadow:
+      0 18px 42px rgba(76, 29, 149, 0.12),
+      0 0 0 1px rgba(109, 40, 217, 0.12);
   }
 
 }
