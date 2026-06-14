@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from './components/ThemeToggle';
 import Navbar from './components/Navbar';
 import Hero3D from './components/Hero3D';
@@ -11,6 +11,11 @@ import ScrollToTop from './components/ScrollToTop';
 import { FaEnvelope, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = '';
+  }, []);
+
   return (
     <ThemeProvider>
       <Navbar />
