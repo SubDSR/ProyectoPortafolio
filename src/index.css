@@ -118,6 +118,13 @@ a {
   color: var(--text-primary);
 }
 
+#about,
+#certificates,
+#technologies,
+#contact {
+  scroll-margin-top: 6rem;
+}
+
 /* ============================================================
    SCROLL REVEAL
    ============================================================ */
