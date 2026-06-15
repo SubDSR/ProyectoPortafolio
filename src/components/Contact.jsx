@@ -3,6 +3,7 @@ import { FaCopy, FaCheck, FaPaperPlane } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import '../styles/Contact.css';
 import useScrollReveal from '../hooks/useScrollReveal';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 const email = 'davidsevanr@gmail.com';
 const subject = 'Propuesta de colaboración — [Tu nombre]';
@@ -13,7 +14,7 @@ const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=$
 function Contact() {
   const [sectionRef, isVisible] = useScrollReveal();
   const [copied, setCopied] = useState(false);
-  const [isMobile] = useState(() => window.innerWidth < 768);
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   const emailHref = isMobile ? mailtoUrl : gmailUrl;
 

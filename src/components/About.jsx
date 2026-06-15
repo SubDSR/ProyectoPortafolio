@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/About.css';
 import useScrollReveal from '../hooks/useScrollReveal';
-import fotoPerfil from '../assets/foto_perfil.png';
+import fotoPerfil from '../assets/foto_perfil.webp';
 
 function About() {
   const [sectionRef, isVisible] = useScrollReveal();
@@ -24,7 +24,7 @@ function About() {
               <div className="profile-decor-circle" />
 
               <div className="profile-avatar-area">
-                <img src={fotoPerfil} alt="David Sevan Reyes" className="profile-avatar-img" />
+                <img src={fotoPerfil} alt="David Sevan Reyes" className="profile-avatar-img" loading="lazy" decoding="async" />
               </div>
 
               <div className="profile-card-info">

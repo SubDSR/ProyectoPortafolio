@@ -17,7 +17,7 @@
 .hero-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(40px);
   pointer-events: none;
   z-index: 0;
 }
@@ -230,7 +230,7 @@
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   white-space: nowrap;
   min-height: 44px;
@@ -323,7 +323,7 @@
   background:
     radial-gradient(circle at 50% 42%, transparent 38%, rgba(8, 9, 20, 0.28) 74%),
     linear-gradient(180deg, rgba(124, 58, 237, 0.18), rgba(8, 9, 20, 0.18)),
-    url('../assets/minecraft-bg-dark.png');
+    url('../assets/minecraft-bg-dark.webp');
   background-position: center;
   background-size: cover;
   border: 3px solid var(--accent-muted);
@@ -348,7 +348,7 @@
   background:
     radial-gradient(circle at 50% 42%, transparent 42%, rgba(255, 255, 255, 0.22) 76%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(124, 58, 237, 0.08)),
-    url('../assets/minecraft-bg-light.png');
+    url('../assets/minecraft-bg-light.webp');
   background-position: center;
   background-size: cover;
   box-shadow:
