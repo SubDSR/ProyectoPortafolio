@@ -58,7 +58,7 @@
   height: 270px;
   background: var(--accent-muted);
   border-radius: 50%;
-  filter: blur(50px);
+  filter: blur(30px);
   pointer-events: none;
 }
 
