@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../styles/ImageModal.css';
+import useEscapeKey from '../hooks/useEscapeKey';
 
 function ImageModal({ imageUrl, onClose }) {
-  useEffect(() => {
-    if (!imageUrl) return;
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [imageUrl, onClose]);
+  useEscapeKey(onClose, !!imageUrl);
 
   if (!imageUrl) return null;
 
