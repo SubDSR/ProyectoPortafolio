@@ -1,6 +1,7 @@
 import { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useGLTF, OrbitControls, Stage } from '@react-three/drei'
+import useMediaQuery from '../hooks/useMediaQuery'
 
 const modelUrl = `${import.meta.env.BASE_URL}model.glb`
 
@@ -24,9 +25,15 @@ useGLTF.preload(modelUrl)
 
 export default function MinecraftAvatar() {
   const [adjustCamera, setAdjustCamera] = useState(true)
+  const isMobile = useMediaQuery('(max-width: 767px)')
 
   return (
-    <Canvas camera={{ position: [0, 0.5, 2], fov: 38 }} gl={{ alpha: true }} style={{ background: 'transparent', pointerEvents: 'none' }}>
+    <Canvas
+      camera={{ position: [0, 0.5, 2], fov: 38 }}
+      gl={{ alpha: true }}
+      dpr={[1, 1.5]}
+      style={{ background: 'transparent', pointerEvents: 'none' }}
+    >
       <ambientLight intensity={2.5} />
       <directionalLight position={[2, 4, 3]} intensity={2} />
       <directionalLight position={[-2, 1, -2]} intensity={1} />
@@ -44,7 +51,7 @@ export default function MinecraftAvatar() {
           target={[0, 0.5, 0]}
           enableZoom={false}
           enablePan={false}
-          autoRotate
+          autoRotate={!isMobile}
           autoRotateSpeed={3}
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 1.8}
