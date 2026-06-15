@@ -1,46 +1,17 @@
 import React from 'react';
 import '../styles/Tecnologias.css';
 import useScrollReveal from '../hooks/useScrollReveal';
-
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaGitAlt,
-  FaGithub,
-  FaCode,
-} from 'react-icons/fa';
-import { SiFastapi, SiFigma, SiMysql, SiVite } from 'react-icons/si';
-
-import sqlserverLogo from '../assets/sqlserver-icon.png';
-import pythonLogo from '../assets/python-icon.png';
-
-/* ── Fila superior: Frontend + Backend + DB ── */
-const row1 = [
-  { name: 'HTML',       iconEl: <FaHtml5 /> },
-  { name: 'CSS',        iconEl: <FaCss3Alt /> },
-  { name: 'JavaScript', iconEl: <FaJs /> },
-  { name: 'React',      iconEl: <FaReact /> },
-  { name: 'Python',     iconEl: <img src={pythonLogo} alt="" className="mq-img" /> },
-  { name: 'FastAPI',    iconEl: <SiFastapi /> },
-  { name: 'MySQL',      iconEl: <SiMysql /> },
-];
-
-/* ── Fila inferior: Tools ── */
-const row2 = [
-  { name: 'SQL Server', iconEl: <img src={sqlserverLogo} alt="" className="mq-img" /> },
-  { name: 'Git',        iconEl: <FaGitAlt /> },
-  { name: 'GitHub',     iconEl: <FaGithub /> },
-  { name: 'Vite',       iconEl: <SiVite /> },
-  { name: 'Figma',      iconEl: <SiFigma /> },
-  { name: 'VS Code',    iconEl: <FaCode /> },
-];
+import { row1, row2 } from '../data/technologies';
 
 function MarqueePill({ tech }) {
   return (
     <div className="mq-pill">
-      <span className="mq-icon">{tech.iconEl}</span>
+      <span className="mq-icon">
+        {tech.Icon
+          ? <tech.Icon />
+          : <img src={tech.iconSrc} alt="" className="mq-img" />
+        }
+      </span>
       <span className="mq-name">{tech.name}</span>
     </div>
   );
