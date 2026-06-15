@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { ThemeProvider } from './components/ThemeToggle';
 import Navbar from './components/Navbar';
 import Hero3D from './components/Hero3D';
-import Projects from './components/Projects';
-import About from './components/About';
-import Certificates from './components/Certificates';
-import Tecnologias from './components/Tecnologias';
-import Contact from './components/Contact';
 import ScrollToTop from './components/ScrollToTop';
-import { FaEnvelope, FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { footerSocials } from './data/socialLinks';
+
+const Projects     = lazy(() => import('./components/Projects'));
+const About        = lazy(() => import('./components/About'));
+const Certificates = lazy(() => import('./components/Certificates'));
+const Tecnologias  = lazy(() => import('./components/Tecnologias'));
+const Contact      = lazy(() => import('./components/Contact'));
 
 function App() {
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.documentElement.style.scrollBehavior = '';
   }, []);
 
@@ -21,11 +21,11 @@ function App() {
       <Navbar />
       <main>
         <Hero3D />
-        <Projects />
-        <About />
-        <Certificates />
-        <Tecnologias />
-        <Contact />
+        <Suspense fallback={null}><Projects /></Suspense>
+        <Suspense fallback={null}><About /></Suspense>
+        <Suspense fallback={null}><Certificates /></Suspense>
+        <Suspense fallback={null}><Tecnologias /></Suspense>
+        <Suspense fallback={null}><Contact /></Suspense>
       </main>
       <footer className="footer">
         <p>
@@ -33,30 +33,17 @@ function App() {
           {new Date().getFullYear()}
         </p>
         <div className="footer-links">
-          <a
-            href="https://github.com/SubDSR"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub de David Sevan"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/david-sevan/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn de David Sevan"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=davidsevanr%40gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Enviar correo a David Sevan"
-          >
-            <FaEnvelope />
-          </a>
+          {footerSocials.map(({ href, label, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+            >
+              <Icon />
+            </a>
+          ))}
         </div>
       </footer>
       <ScrollToTop />

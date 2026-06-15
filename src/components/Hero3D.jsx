@@ -2,14 +2,11 @@ import React, { Suspense, lazy, useRef, useEffect } from 'react';
 import {
   FaUser,
   FaDownload,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaEnvelope,
   FaGamepad,
   FaPalette,
 } from 'react-icons/fa';
 import '../styles/Hero3D.css';
+import { heroSocials } from '../data/socialLinks';
 
 const MinecraftAvatar = lazy(() => import('./MinecraftAvatar'));
 
@@ -218,38 +215,17 @@ function Hero3D() {
               </a>
 
               <div className="hero3d-socials" aria-label="Redes sociales de David Sevan">
-                <a
-                  href="https://www.linkedin.com/in/david-sevan/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn de David Sevan"
-                >
-                  <FaLinkedinIn />
-                </a>
-                <a
-                  href="https://www.instagram.com/david_sevan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram de David Sevan"
-                >
-                  <FaInstagram />
-                </a>
-                <a
-                  href="https://github.com/SubDSR"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub de David Sevan"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=davidsevanr%40gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Abrir Gmail para enviar correo a David Sevan"
-                >
-                  <FaEnvelope />
-                </a>
+                {heroSocials.map(({ href, label, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                  >
+                    <Icon />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
