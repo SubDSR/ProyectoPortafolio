@@ -46,12 +46,16 @@ function Certificates() {
       ref={sectionRef}
     >
       <div className="container">
-        <div className="certificates-heading">
+        <div className="certificates-heading reveal-child">
           <h2 className="section-title">Certificados</h2>
         </div>
 
         <div className="certificates-console" data-mobile={isMobile}>
-          <div className="terminal-panel" aria-label="Lista de certificados disponibles">
+          <div
+            className="terminal-panel reveal-child reveal-child-left"
+            aria-label="Lista de certificados disponibles"
+            style={{ '--reveal-delay': '90ms' }}
+          >
             <div className="terminal-topbar">
               <span className="terminal-dot terminal-dot-red" />
               <span className="terminal-dot terminal-dot-yellow" />
@@ -93,7 +97,7 @@ function Certificates() {
             </div>
           </div>
 
-          <div className="certificate-showcase">
+          <div className="certificate-showcase reveal-child reveal-child-right" style={{ '--reveal-delay': '170ms' }}>
             <article className="certificate-card" key={activeCertificate.title}>
               <div className="certificate-media">
                 <img

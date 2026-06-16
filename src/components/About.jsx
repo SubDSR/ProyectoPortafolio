@@ -13,11 +13,11 @@ function About() {
       ref={sectionRef}
     >
       <div className="container">
-        <h2 className="section-title">¿Quién soy?</h2>
+        <h2 className="section-title reveal-child">¿Quién soy?</h2>
 
         <div className="about-inner">
           {/* ── COLUMNA IZQUIERDA: tarjeta de perfil inclinada ── */}
-          <div className="about-card-visual">
+          <div className="about-card-visual reveal-child reveal-child-left" style={{ '--reveal-delay': '90ms' }}>
             <div className="profile-card">
               {/* Decoraciones de fondo */}
               <div className="profile-glow" />
@@ -40,7 +40,7 @@ function About() {
           </div>
 
           {/* ── COLUMNA DERECHA: contenido ── */}
-          <div className="about-content">
+          <div className="about-content reveal-child reveal-child-right" style={{ '--reveal-delay': '170ms' }}>
             <div className="about-text">
               <p className="about-mobile-summary">
                 Desarrollador Fullstack en formación, enfocado en crear interfaces claras

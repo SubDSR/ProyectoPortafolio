@@ -38,7 +38,7 @@ function Contact() {
       </div>
       <div className="container">
         <div className="contact-shell">
-          <div className="contact-copy">
+          <div className="contact-copy reveal-child reveal-child-left" style={{ '--reveal-delay': '80ms' }}>
             <span className="contact-kicker">Disponible<span className="kicker-extra"> para colaborar</span></span>
             <h2 className="section-title">Contacto</h2>
             <p>
@@ -65,7 +65,11 @@ function Contact() {
             </div>
           </div>
 
-          <div className="gmail-panel" aria-label="Vista previa de correo de contacto">
+          <div
+            className="gmail-panel reveal-child reveal-child-right"
+            aria-label="Vista previa de correo de contacto"
+            style={{ '--reveal-delay': '160ms' }}
+          >
             <div className="gmail-panel-topbar">
               <span className="gmail-dot gmail-dot-red" />
               <span className="gmail-dot gmail-dot-yellow" />
