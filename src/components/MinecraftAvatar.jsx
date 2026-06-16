@@ -5,9 +5,9 @@ import useMediaQuery from '../hooks/useMediaQuery'
 
 const modelUrl = `${import.meta.env.BASE_URL}model.glb`
 
-function SkinModel() {
+function SkinModel({ rotationY = 0 }) {
   const { scene } = useGLTF(modelUrl)
-  return <primitive object={scene} />
+  return <primitive object={scene} rotation={[0, rotationY, 0]} />
 }
 
 // Monta dentro del Suspense: cuando el modelo ya cargó, espera un frame
@@ -44,7 +44,7 @@ export default function MinecraftAvatar() {
           intensity={0.3}
           adjustCamera={adjustCamera}
         >
-          <SkinModel />
+          <SkinModel rotationY={Math.PI} />
         </Stage>
         <LockAfterFit onLock={() => setAdjustCamera(false)} />
         <OrbitControls
