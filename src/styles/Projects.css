@@ -56,6 +56,32 @@
   align-items: stretch;
 }
 
+.project-card-shell {
+  height: 100%;
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+  transition:
+    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--project-delay, 0ms);
+}
+
+.projects-section.visible .project-card-shell {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.project-card-shell.featured {
+  grid-column: 1 / -1;
+}
+
+.project-card-shell.centered-extra {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: calc((100% - 2.5rem) / 2);
+  justify-self: center;
+}
+
 .project-card {
   position: relative;
   display: flex;
@@ -68,10 +94,6 @@
   background: var(--bg-surface);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.project-card.featured {
-  grid-column: 1 / -1;
 }
 
 .project-card:hover {
@@ -134,6 +156,89 @@
   margin-bottom: 1.5rem;
   background: var(--bg-surface-elevated);
   transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-image-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1.5rem;
+  padding: clamp(1rem, 3vw, 2.35rem);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-image-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 18%, var(--project-image-glow-a), transparent 34%),
+    radial-gradient(circle at 86% 78%, var(--project-image-glow-b), transparent 36%),
+    linear-gradient(135deg, #ffffff 0%, var(--project-image-surface) 100%);
+}
+
+.project-image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 999px;
+  background: var(--project-image-glow-a);
+  filter: blur(32px);
+  opacity: 0.35;
+}
+
+.project-image-frame img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff;
+  object-fit: cover;
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
+.project-image-food img {
+  object-position: top center;
+}
+
+.project-card:hover .project-image-frame,
+.project-image-frame:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.project-card:hover .project-image-frame img {
+  border-color: transparent;
+}
+
+.project-image-vet {
+  --project-image-surface: #e9fbff;
+  --project-image-glow-a: rgba(35, 183, 211, 0.34);
+  --project-image-glow-b: rgba(109, 232, 244, 0.24);
+}
+
+.project-image-portfolio {
+  --project-image-surface: #efeaff;
+  --project-image-glow-a: rgba(124, 58, 237, 0.32);
+  --project-image-glow-b: rgba(49, 46, 129, 0.22);
+}
+
+.project-image-food {
+  --project-image-surface: #fff0f7;
+  --project-image-glow-a: rgba(236, 72, 153, 0.24);
+  --project-image-glow-b: rgba(251, 146, 60, 0.22);
 }
 
 .project-card:hover img {
@@ -208,6 +313,7 @@
   overflow: hidden;
   border: 2px solid var(--border);
   border-radius: 999px;
+  background: var(--bg-surface-elevated);
   transition: border-color 0.3s ease;
 }
 
@@ -232,6 +338,20 @@
   line-height: 1;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.buttons > :first-child {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.buttons > :last-child {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+}
+
+.buttons > :only-child {
+  border-radius: 999px;
 }
 
 .btn-primary {
@@ -294,8 +414,21 @@
     grid-template-columns: 1fr;
   }
 
-  .project-card.featured {
+  .project-card-shell.featured {
     grid-column: auto;
+  }
+
+  .project-card-shell.centered-extra {
+    grid-column: auto;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-shell {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
@@ -385,5 +518,17 @@
   .btn-secondary {
     border-top: 2px solid var(--border);
     border-left: 0;
+  }
+
+  .buttons > :first-child {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .buttons > :last-child {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .buttons > :only-child {
+    border-radius: 12px;
   }
 }

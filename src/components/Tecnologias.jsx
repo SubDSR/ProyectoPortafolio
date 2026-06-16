@@ -40,11 +40,13 @@ function Tecnologias() {
       ref={sectionRef}
     >
       <div className="container">
-        <h2 className="section-title">Tecnologías</h2>
-        <p className="tech-subtitle">Herramientas que uso en mis proyectos</p>
+        <h2 className="section-title reveal-child">Tecnologías</h2>
+        <p className="tech-subtitle reveal-child" style={{ '--reveal-delay': '80ms' }}>
+          Herramientas que uso en mis proyectos
+        </p>
       </div>
 
-      <div className="mq-rows">
+      <div className="mq-rows reveal-child reveal-child-scale" style={{ '--reveal-delay': '160ms' }}>
         <MarqueeRow items={row1} reverse={false} />
         <MarqueeRow items={row2} reverse={true} />
       </div>
