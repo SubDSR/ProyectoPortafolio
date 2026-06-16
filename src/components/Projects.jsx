@@ -12,6 +12,7 @@ function Projects() {
   const [activeFilter, setActiveFilter]   = useState('Todos');
   const [showAll, setShowAll] = useState(false);
   const isMobile = useMediaQuery('(max-width: 767px)');
+  const isDesktopGrid = useMediaQuery('(min-width: 901px)');
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeVideoUrl, setActiveVideoUrl] = useState(null);
   const [sectionRef, isVisible] = useScrollReveal();
@@ -28,7 +29,13 @@ function Projects() {
       ? filtered.slice(0, initialVisibleCount)
       : filtered;
 
-  const shouldShowViewMore = activeFilter === 'Todos' && filtered.length > initialVisibleCount;
+  const shouldShowViewMore = activeFilter === 'Todos' && (
+    isMobile ? filtered.length > 1 : filtered.length > 3
+  );
+  const extraProjectsCount = activeFilter === 'Todos' && showAll
+    ? Math.max(filtered.length - initialVisibleCount, 0)
+    : 0;
+  const shouldCenterLastExtraProject = isDesktopGrid && extraProjectsCount % 2 === 1;
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter);
@@ -38,9 +45,11 @@ function Projects() {
   const toggleProjects = () => {
     if (showAll) {
       setShowAll(false);
-      requestAnimationFrame(() => {
-        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+      if (isMobile) {
+        requestAnimationFrame(() => {
+          sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
       return;
     }
 
@@ -55,10 +64,15 @@ function Projects() {
         ref={sectionRef}
       >
         <div className="container">
-          <h2 className="section-title">Proyectos</h2>
+          <h2 className="section-title reveal-child">Proyectos</h2>
 
           {/* ── Filtros ── */}
-          <div className="projects-filters" role="group" aria-label="Filtrar proyectos por categoría">
+          <div
+            className="projects-filters reveal-child"
+            role="group"
+            aria-label="Filtrar proyectos por categoría"
+            style={{ '--reveal-delay': '90ms' }}
+          >
             {FILTERS.map((f) => (
               <button
                 key={f}
@@ -74,65 +88,96 @@ function Projects() {
           {/* ── Grid de tarjetas ── */}
           {visibleProjects.length > 0 ? (
             <div className="projects-grid">
-              {visibleProjects.map((project) => (
+              {visibleProjects.map((project, index) => {
+                const centerLastExtra = shouldCenterLastExtraProject && index === visibleProjects.length - 1;
+
+                return (
                 <div
-                  className={`project-card${project.id === 1 ? ' featured' : ''}`}
+                  className={`project-card-shell${project.id === 1 ? ' featured' : ''}${centerLastExtra ? ' centered-extra' : ''}`}
                   key={project.id}
+                  style={{ '--project-delay': `${Math.min(index, 5) * 70}ms` }}
                 >
-                  <div className="project-category">{project.category}</div>
+                  <div className={`project-card${project.id === 1 ? ' featured' : ''}`}>
+                    <div className="project-category">{project.category}</div>
 
-                  <img
-                    src={project.image}
-                    alt={`Proyecto ${project.title}`}
-                    className={project.imageClass || ''}
-                    loading="lazy"
-                    decoding="async"
-                    onClick={() => setSelectedImage(project.image)}
-                    style={{ cursor: 'pointer' }}
-                  />
+                    {project.imageFrame ? (
+                      <div
+                        className={`project-image-frame ${project.imageFrame}`}
+                        onClick={() => setSelectedImage(project.image)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            setSelectedImage(project.image);
+                          }
+                        }}
+                        aria-label={`Ver imagen del proyecto ${project.title}`}
+                      >
+                        <img
+                          src={project.image}
+                          alt={`Proyecto ${project.title}`}
+                          className={project.imageClass || ''}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={`Proyecto ${project.title}`}
+                        className={project.imageClass || ''}
+                        loading="lazy"
+                        decoding="async"
+                        onClick={() => setSelectedImage(project.image)}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    )}
 
-                  <h3>{project.title}</h3>
+                    <h3>{project.title}</h3>
 
-                  <div className="project-tech">
-                    {project.techs.map(({ Icon, name }) => (
-                      <span className="tech-pill" key={name}>
-                        <Icon /> {name}
-                      </span>
-                    ))}
-                  </div>
+                    <div className="project-tech">
+                      {project.techs.map(({ Icon, name }) => (
+                        <span className="tech-pill" key={name}>
+                          <Icon /> {name}
+                        </span>
+                      ))}
+                    </div>
 
-                  <p>{project.description}</p>
+                    <p>{project.description}</p>
 
-                  <div className="buttons">
-                    {project.links.web && (
+                    <div className="buttons">
+                      {project.links.web && (
+                        <a
+                          href={project.links.web}
+                          target={project.links.web !== '#' ? '_blank' : undefined}
+                          rel="noopener noreferrer"
+                          className="btn-primary"
+                        >
+                          <IoMdGlobe /> Sitio Web
+                        </a>
+                      )}
+                      {project.links.video && (
+                        <button
+                          className="btn-primary"
+                          onClick={() => setActiveVideoUrl(project.links.video)}
+                        >
+                          <IoMdPlay /> Video Preliminar
+                        </button>
+                      )}
                       <a
-                        href={project.links.web}
-                        target={project.links.web !== '#' ? '_blank' : undefined}
+                        href={project.links.github}
+                        target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-primary"
+                        className="btn-secondary"
                       >
-                        <IoMdGlobe /> Sitio Web
+                        <FaGithub /> GitHub
                       </a>
-                    )}
-                    {project.links.video && (
-                      <button
-                        className="btn-primary"
-                        onClick={() => setActiveVideoUrl(project.links.video)}
-                      >
-                        <IoMdPlay /> Video Preliminar
-                      </button>
-                    )}
-                    <a
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary"
-                    >
-                      <FaGithub /> GitHub
-                    </a>
+                    </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <p className="projects-empty">No hay proyectos en esta categoría aún.</p>

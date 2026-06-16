@@ -11,6 +11,7 @@ export const projects = [
     id: 1,
     category: 'Backend',
     image: systemvetImg,
+    imageFrame: 'project-image-vet',
     title: 'Sistema de Gestión Clínica Veterinaria',
     techs: [
       { Icon: FaPython,  name: 'Python'  },
@@ -28,6 +29,7 @@ export const projects = [
     id: 2,
     category: 'Frontend',
     image: portfolioImg,
+    imageFrame: 'project-image-portfolio',
     title: 'Portafolio Personal',
     techs: [
       { Icon: FaReact,   name: 'React' },
@@ -62,6 +64,7 @@ export const projects = [
     id: 4,
     category: 'Frontend',
     image: lapuntitaImg,
+    imageFrame: 'project-image-food',
     title: 'La Puntita',
     techs: [
       { Icon: FaReact,   name: 'React' },
