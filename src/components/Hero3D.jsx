@@ -197,7 +197,7 @@ function Hero3D() {
 
           {/* ── TEXTO INFERIOR: subtítulo + descripción + acciones ── */}
           <div className="hero3d-text-bottom" ref={layer3Ref}>
-            <h2 className="hero3d-subtitle">Desarrollador Fullstack en formación</h2>
+            <h2 className="hero3d-subtitle">Desarrollador Fullstack</h2>
 
             <p className="hero3d-description">
               Construyo interfaces, sistemas y experiencias digitales
